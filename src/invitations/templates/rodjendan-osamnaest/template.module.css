@@ -1,0 +1,107 @@
+.theme {
+  --inv-bg: #1d1433;
+  --inv-alt: #261b42;
+  --inv-text: #f1ecff;
+  --inv-muted: #b3a9cc;
+  --inv-accent: #c6a7ff;
+  --inv-on-accent: #1d1433;
+  --inv-line: rgba(241, 236, 255, 0.18);
+  --inv-display: var(--font-osamnaest), system-ui, sans-serif;
+  --inv-display-weight: 800;
+  --inv-display-case: uppercase;
+  --inv-display-tracking: -0.02em;
+  --inv-intro-font: var(--font-inter), system-ui, sans-serif;
+  --inv-intro-weight: 600;
+  --inv-align: left;
+  --inv-mi: 0 auto;
+  --inv-radius: 18px;
+  --inv-countdown-bg: #c6a7ff;
+  --inv-countdown-text: #1d1433;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hero {
+  justify-content: space-between;
+  gap: 4cqi;
+  padding: max(5rem, 8cqi) 6cqi 6cqi;
+  background: var(--inv-bg);
+  color: var(--inv-text);
+}
+
+.compact {
+  padding: 8cqi 6cqi;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(0.5rem, 2.8cqi, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.outline {
+  font-family: var(--inv-display);
+  font-size: clamp(6rem, min(64cqi, 56svh), 30rem);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: max(1.5px, 0.45cqi) var(--inv-accent);
+}
+
+.compact .outline {
+  font-size: 64cqi;
+}
+
+.name {
+  margin-top: -6cqi;
+  font-family: var(--inv-display);
+  font-size: clamp(3rem, 30cqi, 13rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--inv-accent);
+}
+
+.meta {
+  padding-top: 2cqi;
+  border-top: 1px solid var(--inv-line);
+  font-size: clamp(0.55rem, 3.2cqi, 1.1rem);
+  font-weight: 600;
+}

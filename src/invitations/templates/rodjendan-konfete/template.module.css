@@ -1,0 +1,160 @@
+.theme {
+  --inv-bg: #fff8e7;
+  --inv-alt: #ffefc2;
+  --inv-text: #1d1b3a;
+  --inv-muted: #55526f;
+  --inv-accent: #e8492a;
+  --inv-on-accent: #fff;
+  --inv-line: rgba(29, 27, 58, 0.16);
+  --inv-display: var(--font-konfete), system-ui, sans-serif;
+  --inv-display-weight: 800;
+  --inv-display-tracking: -0.03em;
+  --inv-intro-weight: 700;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
+  --inv-radius: 20px;
+  --inv-countdown-bg: #3b5bdb;
+  --inv-countdown-text: #fff;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hero {
+  align-items: center;
+  justify-content: center;
+  gap: 3cqi;
+  padding: max(5rem, 9cqi) 7cqi;
+  background: #ffd23f;
+  color: var(--inv-text);
+  text-align: center;
+}
+
+.compact {
+  padding: 8cqi;
+}
+
+.shape {
+  position: absolute;
+}
+
+.circle {
+  top: 12%;
+  left: -8cqi;
+  width: min(30cqi, 260px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ff5c39;
+}
+
+.triangle {
+  top: 9%;
+  right: 7cqi;
+  width: min(22cqi, 190px);
+  aspect-ratio: 1;
+  background: #3b5bdb;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: rotate(12deg);
+}
+
+.square {
+  bottom: 10%;
+  left: 9cqi;
+  width: min(16cqi, 140px);
+  aspect-ratio: 1;
+  border-radius: 14%;
+  background: #2fb37a;
+  transform: rotate(-14deg);
+}
+
+.quarter {
+  right: -10cqi;
+  bottom: -10cqi;
+  width: min(40cqi, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ff8fb1;
+}
+
+.kicker,
+.title,
+.date {
+  position: relative;
+}
+
+.kicker {
+  padding: 0.5em 1.1em;
+  border-radius: 999px;
+  background: var(--inv-text);
+  color: #ffd23f;
+  font-size: clamp(0.5rem, 2.8cqi, 0.95rem);
+  font-weight: 700;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--inv-display);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.name {
+  font-size: clamp(3rem, 26cqi, 11rem);
+}
+
+.puni {
+  font-size: clamp(1rem, 7cqi, 3rem);
+  letter-spacing: -0.01em;
+}
+
+.age {
+  display: grid;
+  place-items: center;
+  width: clamp(4rem, 32cqi, 14rem);
+  aspect-ratio: 1;
+  margin-top: 2cqi;
+  border-radius: 50%;
+  background: #3b5bdb;
+  color: #fff;
+  font-size: clamp(3rem, 22cqi, 10rem);
+}
+
+.date {
+  font-size: clamp(0.55rem, 3.2cqi, 1.1rem);
+  font-weight: 700;
+}

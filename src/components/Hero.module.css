@@ -1,0 +1,119 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem);
+}
+
+.headline {
+  margin-top: 1.25rem;
+  max-width: 13ch;
+  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+.sub {
+  max-width: 46ch;
+  margin-top: 1.5rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.18rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+.textLink {
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border-strong);
+  padding-bottom: 2px;
+  transition: border-color 0.15s ease;
+}
+
+.textLink:hover {
+  border-color: var(--color-ink);
+}
+
+.facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-strong);
+  font-size: 0.92rem;
+  color: var(--color-ink-soft);
+}
+
+.facts strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.visual {
+  position: relative;
+  display: block;
+  min-height: 560px;
+}
+
+.phoneBack,
+.phoneFront {
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+.phoneBack {
+  top: 0;
+  right: 0;
+  width: 225px;
+  opacity: 0.95;
+}
+
+.phoneFront {
+  bottom: 0;
+  left: 6%;
+  z-index: 1;
+}
+
+.visual:hover .phoneFront {
+  transform: translateY(-6px);
+}
+
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .headline {
+    max-width: 16ch;
+  }
+
+  .visual {
+    width: min(100%, 460px);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .visual {
+    min-height: 470px;
+  }
+
+  .phoneFront {
+    left: 0;
+    width: 215px;
+  }
+
+  .phoneBack {
+    width: 190px;
+  }
+}

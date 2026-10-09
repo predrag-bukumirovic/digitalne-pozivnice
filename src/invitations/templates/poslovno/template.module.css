@@ -1,0 +1,107 @@
+.theme {
+  --inv-bg: #f3f2ee;
+  --inv-alt: #e8e7e1;
+  --inv-text: #0f1b33;
+  --inv-muted: #4d586e;
+  --inv-accent: #0f1b33;
+  --inv-on-accent: #f3f2ee;
+  --inv-line: rgba(15, 27, 51, 0.18);
+  --inv-display: var(--font-poslovno), system-ui, sans-serif;
+  --inv-display-weight: 600;
+  --inv-display-tracking: -0.035em;
+  --inv-body: var(--font-poslovno), system-ui, sans-serif;
+  --inv-intro-weight: 500;
+  --inv-align: left;
+  --inv-mi: 0 auto;
+  --inv-radius: 0;
+  --inv-marker-radius: 0;
+  --inv-countdown-bg: #0f1b33;
+  --inv-countdown-text: #f3f2ee;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hero {
+  justify-content: space-between;
+  gap: 6cqi;
+  padding: max(5rem, 8cqi) clamp(1.25rem, 6cqi, 4rem) clamp(1.5rem, 6cqi, 3rem);
+  background: #0f1b33;
+  color: #f3f2ee;
+  font-family: var(--inv-display);
+}
+
+.compact {
+  padding: 8cqi 7cqi;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: clamp(0.4rem, 2.5cqi, 1rem);
+  border-bottom: 1px solid rgba(243, 242, 238, 0.28);
+  font-size: clamp(0.5rem, 2.8cqi, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 7ch;
+  font-size: clamp(2.6rem, 21cqi, 11rem);
+  font-weight: 600;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3cqi;
+  padding-top: clamp(0.4rem, 2.5cqi, 1rem);
+  border-top: 1px solid rgba(243, 242, 238, 0.28);
+}
+
+.facts dt {
+  font-size: clamp(0.45rem, 2.4cqi, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(243, 242, 238, 0.7);
+}
+
+.facts dd {
+  font-size: clamp(0.6rem, 3.8cqi, 1.3rem);
+  font-weight: 600;
+}

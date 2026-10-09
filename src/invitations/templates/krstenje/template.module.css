@@ -1,0 +1,118 @@
+.theme {
+  --inv-bg: #f5f8fa;
+  --inv-alt: #e7eef3;
+  --inv-text: #1c2a36;
+  --inv-muted: #52626f;
+  --inv-accent: #3c6a8a;
+  --inv-on-accent: #fff;
+  --inv-line: rgba(28, 42, 54, 0.15);
+  --inv-display: var(--font-krstenje), Georgia, serif;
+  --inv-display-weight: 500;
+  --inv-display-tracking: -0.01em;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
+  --inv-radius: 24px;
+  --inv-countdown-bg: #dfe9f0;
+  --inv-countdown-text: #1c2a36;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hero {
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.3rem, 2cqi, 1rem);
+  padding: max(5rem, 9cqi) 6cqi;
+  background: #e5edf3;
+  color: var(--inv-text);
+  text-align: center;
+}
+
+.compact {
+  padding: 8cqi;
+}
+
+.halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(84cqi, 640px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  transform: translate(-50%, -50%);
+}
+
+.cross,
+.kicker,
+.name,
+.date,
+.place {
+  position: relative;
+}
+
+.cross {
+  width: clamp(0.8rem, 5cqi, 1.6rem);
+  margin-bottom: clamp(0.3rem, 2cqi, 1rem);
+  color: var(--inv-accent);
+}
+
+.kicker {
+  font-size: clamp(0.5rem, 2.8cqi, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--inv-accent);
+}
+
+.name {
+  font-family: var(--inv-display);
+  font-size: clamp(3.2rem, 36cqi, 14rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.date {
+  font-family: var(--inv-display);
+  font-size: clamp(0.8rem, 5.2cqi, 1.9rem);
+  font-weight: 500;
+}
+
+.place {
+  font-size: clamp(0.5rem, 2.8cqi, 0.95rem);
+  color: var(--inv-muted);
+}

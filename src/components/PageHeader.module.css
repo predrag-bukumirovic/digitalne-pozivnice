@@ -1,0 +1,17 @@
+.header {
+  padding-block: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  max-width: 18ch;
+  margin-top: 1rem;
+  font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  max-width: 58ch;
+  margin-top: 1.1rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.18rem);
+}

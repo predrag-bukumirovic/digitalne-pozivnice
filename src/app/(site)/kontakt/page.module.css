@@ -1,0 +1,75 @@
+.layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3.5rem, 7vw, 6rem);
+}
+
+.info {
+  position: sticky;
+  top: 6.5rem;
+}
+
+.infoTitle {
+  font-size: 1.6rem;
+}
+
+.info > p {
+  margin-top: 0.75rem;
+}
+
+.contactList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+  font-weight: 600;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.contactList a:hover {
+  color: var(--color-primary);
+}
+
+.contactIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary);
+}
+
+.next {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-alt);
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+}
+
+.formCard {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .info {
+    position: static;
+  }
+}

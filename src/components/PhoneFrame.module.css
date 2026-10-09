@@ -1,0 +1,30 @@
+.phone {
+  isolation: isolate;
+  width: 250px;
+  aspect-ratio: 9 / 19;
+  padding: 9px;
+  border-radius: 44px;
+  background: #1d1b18;
+  box-shadow: 0 40px 70px -30px rgba(33, 29, 24, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 36px;
+  background: #fff;
+}
+
+.screen::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  z-index: 5;
+  width: 74px;
+  height: 21px;
+  border-radius: 12px;
+  background: #1d1b18;
+  transform: translateX(-50%);
+}

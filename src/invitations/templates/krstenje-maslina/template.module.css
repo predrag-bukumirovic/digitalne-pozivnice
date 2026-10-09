@@ -1,0 +1,111 @@
+.theme {
+  --inv-bg: #f3f1e7;
+  --inv-alt: #e9e6d8;
+  --inv-text: #262a1d;
+  --inv-muted: #5a604d;
+  --inv-accent: #4f6132;
+  --inv-on-accent: #fff;
+  --inv-line: rgba(38, 42, 29, 0.16);
+  --inv-display: var(--font-maslina), Georgia, serif;
+  --inv-display-tracking: -0.02em;
+  --inv-align: left;
+  --inv-mi: 0 auto;
+  --inv-radius: 16px;
+  --inv-countdown-bg: #4f6132;
+  --inv-countdown-text: #f3f1e7;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hero {
+  justify-content: space-between;
+  padding: max(5rem, 9cqi) 7cqi 7cqi;
+  background: var(--inv-bg);
+  color: var(--inv-text);
+}
+
+.compact {
+  padding: 8cqi 7cqi;
+}
+
+.disc {
+  position: absolute;
+  top: -18cqi;
+  right: -22cqi;
+  width: min(84cqi, 660px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #dfe4cc;
+}
+
+.vertical {
+  position: absolute;
+  left: 3cqi;
+  bottom: 9cqi;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: clamp(0.45rem, 2.4cqi, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--inv-accent);
+}
+
+.date {
+  position: relative;
+  align-self: flex-end;
+  font-size: clamp(0.55rem, 3cqi, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.bottom {
+  position: relative;
+  padding-left: 4cqi;
+}
+
+.name {
+  font-family: var(--inv-display);
+  font-size: clamp(3rem, 27cqi, 13rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--inv-accent);
+}
+
+.place {
+  margin-top: 2cqi;
+  font-size: clamp(0.55rem, 3cqi, 1.05rem);
+  font-weight: 500;
+}

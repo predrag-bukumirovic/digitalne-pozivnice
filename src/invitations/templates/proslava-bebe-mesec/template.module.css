@@ -1,0 +1,113 @@
+.theme {
+  --inv-bg: #f6f3ec;
+  --inv-alt: #ece7dc;
+  --inv-text: #1f2a44;
+  --inv-muted: #566076;
+  --inv-accent: #1f2a44;
+  --inv-on-accent: #f6f3ec;
+  --inv-line: rgba(31, 42, 68, 0.15);
+  --inv-display: var(--font-mesec), Georgia, serif;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
+  --inv-radius: 20px;
+  --inv-countdown-bg: #1f2a44;
+  --inv-countdown-text: #f3ead7;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hero {
+  align-items: center;
+  justify-content: center;
+  gap: 2.5cqi;
+  padding: max(5rem, 9cqi) 7cqi;
+  background: #1f2a44;
+  color: #f3ead7;
+  text-align: center;
+}
+
+.compact {
+  padding: 8cqi;
+}
+
+.star {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f3ead7;
+  opacity: 0.7;
+}
+
+.moon {
+  width: clamp(4rem, 30cqi, 14rem);
+  aspect-ratio: 1;
+  margin-bottom: 3cqi;
+  border-radius: 50%;
+  box-shadow: inset clamp(-3rem, -7cqi, -1rem) clamp(0.5rem, 2.5cqi, 1.25rem) 0 0 #f3ead7;
+  transform: rotate(-20deg);
+}
+
+.kicker,
+.names,
+.date {
+  position: relative;
+}
+
+.kicker {
+  font-size: clamp(0.5rem, 2.8cqi, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d8c9a7;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--inv-display);
+  font-size: clamp(2.4rem, 15cqi, 7rem);
+  line-height: 1.02;
+}
+
+.amp {
+  font-size: 0.6em;
+  color: #d8c9a7;
+}
+
+.date {
+  font-size: clamp(0.55rem, 3.1cqi, 1.05rem);
+  font-weight: 500;
+}
