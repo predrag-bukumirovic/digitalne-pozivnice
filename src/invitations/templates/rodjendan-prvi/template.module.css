@@ -1,0 +1,258 @@
+.theme {
+  --inv-bg: #fffaf0;
+  --inv-alt: #fff2cc;
+  --inv-text: #2a2350;
+  --inv-muted: #57517a;
+  --inv-accent: #e03a3e;
+  --inv-on-accent: #fff;
+  --inv-line: rgba(42, 35, 80, 0.15);
+  --inv-display: var(--font-trake), system-ui, sans-serif;
+  --inv-display-weight: 800;
+  --inv-display-tracking: -0.01em;
+  --inv-intro-weight: 700;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
+  --inv-radius: 24px;
+  --inv-countdown-bg: #2457c5;
+  --inv-countdown-text: #fff;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hero {
+  --s: min(3.4cqi, 24px);
+  align-items: center;
+  justify-content: center;
+  padding: max(4.75rem, 8cqi) 4cqi 6cqi;
+  background: repeating-linear-gradient(
+    90deg,
+    #fbf3d6 0 var(--s),
+    #1f8f4e var(--s) calc(var(--s) * 2),
+    #fbf3d6 calc(var(--s) * 2) calc(var(--s) * 3),
+    #f6b21a calc(var(--s) * 3) calc(var(--s) * 4),
+    #fbf3d6 calc(var(--s) * 4) calc(var(--s) * 5),
+    #2457c5 calc(var(--s) * 5) calc(var(--s) * 6),
+    #fbf3d6 calc(var(--s) * 6) calc(var(--s) * 7),
+    #e03a3e calc(var(--s) * 7) calc(var(--s) * 8)
+  );
+  color: #2a2350;
+  text-align: center;
+}
+
+.compact {
+  padding: 5cqi 3cqi;
+}
+
+.decor {
+  position: absolute;
+  z-index: 2;
+  height: auto;
+  pointer-events: none;
+}
+
+/* ---------- Panel ---------- */
+
+.panel {
+  --p: min(92cqi, 560px);
+  position: relative;
+  width: var(--p);
+}
+
+.panelShape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12% 11% 13%;
+  font-family: var(--inv-display);
+  line-height: 1.05;
+}
+
+.fun,
+.lead,
+.who,
+.date,
+.venue {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fun {
+  background-image: linear-gradient(90deg, #e03a3e, #f2792b);
+  font-size: calc(var(--p) * 0.15);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.toBe {
+  position: relative;
+  isolation: isolate;
+  margin-top: 4%;
+  padding: 0.05em 0.9em 0;
+  color: #2f5bd3;
+  font-size: calc(var(--p) * 0.095);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.brush {
+  position: absolute;
+  z-index: -1;
+  top: 8%;
+  left: -40%;
+  width: 180%;
+  max-width: none;
+  height: 92%;
+  rotate: -3deg;
+}
+
+.name {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 3%;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.01em;
+}
+
+.photo {
+  position: relative;
+  width: 1.75em;
+  aspect-ratio: 1;
+  margin: 0 -0.38em 0 -0.32em;
+  translate: 0 0.16em;
+}
+
+.photoImg {
+  object-fit: contain;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+.hat {
+  position: absolute;
+  top: 0;
+  left: 4%;
+  width: 44%;
+  rotate: -28deg;
+}
+
+.face {
+  position: absolute;
+  right: 14%;
+  bottom: 14%;
+  display: grid;
+  place-items: center;
+  width: 64%;
+  aspect-ratio: 1;
+  padding: 12%;
+  border: 0.02em dashed #8b6fd8;
+  border-radius: 50%;
+  background: #f1ecff;
+  color: #6a4fc6;
+  font-size: 0.1em;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+/* Letters sit above the photo: they only overlap its white margin. */
+.letter {
+  position: relative;
+  z-index: 1;
+}
+
+.squiggle {
+  position: relative;
+  width: 48%;
+  margin-top: 1%;
+  color: #f2792b;
+}
+
+.lead {
+  margin-top: 4%;
+  background-image: linear-gradient(90deg, #e0457b, #8b4fd8);
+  font-size: calc(var(--p) * 0.085);
+  font-weight: 700;
+}
+
+.who {
+  max-width: 12ch;
+  margin-top: 1%;
+  background-image: linear-gradient(90deg, #7a4fe0, #2a9d8f 70%, #1f9d55);
+  font-size: calc(var(--p) * 0.11);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.date {
+  margin-top: 5%;
+  background-image: linear-gradient(90deg, #a24bd6, #e0457b);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--p) * 0.048);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.venue {
+  margin-top: 4%;
+  background-image: linear-gradient(90deg, #6a4fe0, #2a9d8f);
+  font-size: calc(var(--p) * 0.06);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.time {
+  margin-top: 2%;
+  color: #d23f7a;
+  font-size: calc(var(--p) * 0.05);
+  font-weight: 700;
+  text-transform: uppercase;
+}

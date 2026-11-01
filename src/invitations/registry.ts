@@ -9,6 +9,7 @@ import KrstenjeMaslinaPreview from "./templates/krstenje-maslina/Preview";
 import RodjendanPreview from "./templates/rodjendan/Preview";
 import RodjendanKonfetePreview from "./templates/rodjendan-konfete/Preview";
 import RodjendanOsamnaestPreview from "./templates/rodjendan-osamnaest/Preview";
+import RodjendanPrviPreview from "./templates/rodjendan-prvi/Preview";
 import ProslavaBebePreview from "./templates/proslava-bebe/Preview";
 import ProslavaBebeMesecPreview from "./templates/proslava-bebe-mesec/Preview";
 import PoslovnoPreview from "./templates/poslovno/Preview";
@@ -23,6 +24,7 @@ const previews: Record<string, ComponentType> = {
   "rodjendan": RodjendanPreview,
   "rodjendan-konfete": RodjendanKonfetePreview,
   "rodjendan-osamnaest": RodjendanOsamnaestPreview,
+  "rodjendan-prvi": RodjendanPrviPreview,
   "proslava-bebe": ProslavaBebePreview,
   "proslava-bebe-mesec": ProslavaBebeMesecPreview,
   "poslovno": PoslovnoPreview,

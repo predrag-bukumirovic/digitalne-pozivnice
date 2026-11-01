@@ -8,30 +8,35 @@ import Program from "./Program";
 import styles from "./modern.module.css";
 
 /**
- * Shared page for every demo invitation. The template supplies its hero and a theme class that
+ * Shared page for every invitation. The template supplies its hero and a theme class that
  * defines the --inv-* variables (colors, fonts, alignment); everything below the hero follows them.
+ * `demo` adds the bar that sells the template; a customer's real invitation leaves it out.
  */
 export default function ModernInvitation({
   content,
   className,
   hero,
+  demo = true,
 }: {
   content: InvitationContent;
   className: string;
   hero: ReactNode;
+  demo?: boolean;
 }) {
   const orderHref = `/kontakt?sablon=${content.slug}`;
 
   return (
     <div className={`${styles.page} ${className}`}>
-      <nav className={styles.demoBar} aria-label="Primer pozivnice">
-        <Link href="/sabloni" className={styles.demoLink}>
-          ← Šabloni
-        </Link>
-        <Link href={orderHref} className={`${styles.demoLink} ${styles.demoOrder}`}>
-          Naručite ovu pozivnicu
-        </Link>
-      </nav>
+      {demo && (
+        <nav className={styles.demoBar} aria-label="Primer pozivnice">
+          <Link href="/sabloni" className={styles.demoLink}>
+            ← Šabloni
+          </Link>
+          <Link href={orderHref} className={`${styles.demoLink} ${styles.demoOrder}`}>
+            Naručite ovu pozivnicu
+          </Link>
+        </nav>
+      )}
 
       <main>
         {hero}
@@ -61,7 +66,7 @@ export default function ModernInvitation({
           <div className={styles.container}>
             <h2 className={styles.heading}>Potvrda dolaska</h2>
             <p className={styles.note}>{content.rsvpNote}</p>
-            <Contacts contacts={content.rsvpContacts} />
+            {content.rsvpContacts.length > 0 && <Contacts contacts={content.rsvpContacts} />}
           </div>
         </section>
 
@@ -71,8 +76,8 @@ export default function ModernInvitation({
         <span>
           Pozivnica napravljena uz <Link href="/">Lumière</Link>
         </span>
-        <Link href={orderHref} className={styles.footerOrder}>
-          Poručite svoju →
+        <Link href={demo ? orderHref : "/"} className={styles.footerOrder}>
+          {demo ? "Poručite svoju →" : "Napravite i vi svoju →"}
         </Link>
       </footer>
     </div>
