@@ -9,17 +9,16 @@ export default function CtaBand({
   text?: string;
 }) {
   return (
-    <section className={`container ${styles.band}`}>
-      <div className={styles.inner}>
-        <div>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.text}>{text}</p>
-        </div>
+    <section className={styles.band}>
+      <div className={`container ${styles.inner}`}>
+        <p className={styles.script}>hajde da počnemo!</p>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.text}>{text}</p>
         <div className={styles.actions}>
-          <Link href="/kontakt" className={`btn ${styles.light}`}>
+          <Link href="/kontakt" className="btn btnPrimary">
             Poručite pozivnicu
           </Link>
-          <Link href="/sabloni" className="btn btnGhostOnDark">
+          <Link href="/sabloni" className="btn btnSecondary">
             Pogledajte šablone
           </Link>
         </div>

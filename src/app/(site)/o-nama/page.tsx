@@ -5,7 +5,7 @@ import prose from "@/components/Prose.module.css";
 
 export const metadata: Metadata = {
   title: "O nama",
-  description: "Lumière pravi digitalne pozivnice za venčanja, krštenja, rođendane i poslovne događaje.",
+  description: "JustSend pravi digitalne pozivnice za venčanja, krštenja, rođendane i poslovne događaje.",
 };
 
 export default function AboutPage() {
@@ -14,7 +14,7 @@ export default function AboutPage() {
       <PageHeader eyebrow="O nama" title="Pozivnica je prvi utisak o vašoj proslavi" />
       <article className={`container ${prose.prose}`}>
         <p>
-          Lumière je nastao iz jednostavne ideje: pozivnica treba da bude lepa kao i događaj koji najavljuje, a da je
+          JustSend je nastao iz jednostavne ideje: pozivnica treba da bude lepa kao i događaj koji najavljuje, a da je
           gosti otvore za sekund, na telefonu koji ionako drže u ruci.
         </p>
         <p>

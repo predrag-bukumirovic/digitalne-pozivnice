@@ -1,43 +1,27 @@
-import Link from "next/link";
-import CtaBand from "@/components/CtaBand";
-import Faq from "@/components/Faq";
-import Hero from "@/components/Hero";
-import Pricing from "@/components/Pricing";
-import Services from "@/components/Services";
-import Steps from "@/components/Steps";
-import TemplateShowcase from "@/components/TemplateShowcase";
-import styles from "./page.module.css";
+import About from "@/components/home/About";
+import Hero from "@/components/home/Hero";
+import Intro from "@/components/home/Intro";
+import LiveDemo from "@/components/home/LiveDemo";
+import Marquee from "@/components/home/Marquee";
+import Questions from "@/components/home/Questions";
+import QuickContact from "@/components/home/QuickContact";
+import Services from "@/components/home/Services";
 
+/*
+ * Order and behaviour follow the reference design: the intro, photos and service folders are
+ * pinned one over another, and everything after them scrolls over the pinned stack.
+ */
 export default function Home() {
   return (
     <>
       <Hero />
-      <TemplateShowcase />
-
-      <section className={`section ${styles.alt}`}>
-        <div className="container">
-          <h2 className={styles.heading}>Kako do pozivnice</h2>
-          <Steps />
-        </div>
-      </section>
-
+      <Intro />
       <Services />
-      <Pricing />
-
-      <section className="section">
-        <div className={`container ${styles.faq}`}>
-          <div>
-            <h2 className={styles.heading}>Česta pitanja</h2>
-            <p className={styles.faqText}>Ne vidite odgovor? Pozovite nas ili pišite, odgovaramo istog dana.</p>
-            <Link href="/cesta-pitanja" className={styles.textLink}>
-              Sva pitanja <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <Faq limit={5} />
-        </div>
-      </section>
-
-      <CtaBand />
+      <Questions />
+      <Marquee />
+      <About />
+      <LiveDemo />
+      <QuickContact />
     </>
   );
 }

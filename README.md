@@ -1,4 +1,4 @@
-# Lumière — digitalne pozivnice
+# JustSend — digitalne pozivnice
 
 Sajt za prodaju digitalnih pozivnica (Next.js 16, App Router, TypeScript, CSS Modules).
 

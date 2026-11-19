@@ -1,6 +1,6 @@
 import styles from "./Steps.module.css";
 
-const steps = [
+export const steps = [
   {
     title: "Izaberite šablon",
     text: "Pogledajte primere i izaberite dizajn koji vam se dopada, ili tražite pozivnicu po meri.",

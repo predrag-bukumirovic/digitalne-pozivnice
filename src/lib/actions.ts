@@ -63,7 +63,7 @@ export async function sendOrder(_prev: OrderState, formData: FormData): Promise<
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: process.env.ORDER_EMAIL_FROM ?? "Lumière <onboarding@resend.dev>",
+        from: process.env.ORDER_EMAIL_FROM ?? "JustSend <onboarding@resend.dev>",
         to: [to],
         reply_to: fields.email || undefined,
         subject: `Nova porudžbina: ${fields.name}`,

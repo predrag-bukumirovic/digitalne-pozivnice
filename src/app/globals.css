@@ -1,43 +1,81 @@
 :root {
   color-scheme: light;
 
-  --font-display: var(--font-fraunces), "Iowan Old Style", serif;
-  --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--nf-serif), "Times New Roman", serif;
+  --font-body: var(--nf-poppins), system-ui, -apple-system, sans-serif;
+  --font-wide: var(--nf-archivo), system-ui, sans-serif;
+  --font-script: var(--nf-script), cursive;
+  --font-hand: var(--nf-script), cursive;
+  --font-small: var(--nf-montserrat), system-ui, sans-serif;
 
-  /* Warm, editorial palette — ivory paper, deep botanical green, aged gold. */
-  --color-bg: #faf6ef;
-  --color-bg-alt: #f2e9db;
+  /* Palette of the reference design. */
+  --color-wine: #63111c;
+  --color-red: #921626;
+  --color-pink: #d881a6;
+  --color-blush: #eed8d8;
+  --color-cream: #f6f5df;
+  --color-cream-deep: #efeedc;
+  --color-line: #e4a5b8;
+  --color-footer: #651822;
+  --color-black: #111111;
+  --color-white: #fafbf7;
+
+  --color-bg: #ffffff;
+  --color-bg-alt: var(--color-blush);
   --color-surface: #ffffff;
 
-  --color-ink: #211d18;
-  --color-ink-soft: #6d6355;
-  --color-ink-faint: #a89c89;
+  --color-ink: #0b0b0b;
+  --color-ink-soft: #3f3a3a;
+  --color-ink-faint: #9b8f8f;
 
-  --color-primary: #1f3d2e;
-  --color-primary-strong: #14261c;
-  --color-primary-soft: #335644;
-  --color-on-primary: #f6f1e4;
+  /* Older names still used by inner-page components. */
+  --color-gold: var(--color-wine);
+  --color-gold-deep: #4a0c14;
+  --color-sky: var(--color-red);
+  --color-sky-card: var(--color-blush);
+  --color-sky-deep: var(--color-wine);
+  --color-mauve: var(--color-pink);
+  --color-blush-soft: #f6eaea;
+  --color-rose: var(--color-wine);
+  --color-dusty: var(--color-pink);
+  --color-night: var(--color-black);
 
-  --color-accent: #bf8a41;
-  --color-accent-strong: #a5722d;
-  --color-accent-soft: #ecdcbc;
+  --color-primary: var(--color-wine);
+  --color-primary-strong: #4a0c14;
+  --color-primary-soft: var(--color-pink);
+  --color-on-primary: var(--color-cream);
 
-  --color-blush: #e6c2ac;
-  --color-blush-soft: #f4e5da;
+  --color-accent: var(--color-red);
+  --color-accent-strong: var(--color-wine);
+  --color-accent-soft: var(--color-blush);
 
-  --color-border: rgba(33, 29, 24, 0.09);
-  --color-border-strong: rgba(33, 29, 24, 0.16);
+  --color-border: rgba(11, 11, 11, 0.1);
+  --color-border-strong: rgba(11, 11, 11, 0.2);
 
-  --shadow-sm: 0 1px 2px rgba(33, 29, 24, 0.06);
-  --shadow-md: 0 12px 28px -8px rgba(33, 29, 24, 0.16);
-  --shadow-lg: 0 32px 64px -16px rgba(20, 38, 28, 0.28);
+  --shadow-sm: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  --shadow-md: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 24px 50px -24px rgba(0, 0, 0, 0.35);
 
-  --radius-sm: 10px;
-  --radius-md: 20px;
-  --radius-lg: 32px;
+  --radius-sm: 5px;
+  --radius-md: 5px;
+  --radius-lg: 30px;
   --radius-full: 999px;
 
   --container-width: 1180px;
+  /* Room the floating header needs above the first section of every page. */
+  --header-space: 6.5rem;
+
+  /*
+   * One design pixel. Pages are drawn on a 1200px desktop canvas (scaled down below 1200px)
+   * and a 320px mobile canvas scaled to the screen, like the reference site.
+   */
+  --u: min(1px, calc(100vw / 1200));
+}
+
+@media (max-width: 767px) {
+  :root {
+    --u: calc(100vw / 320);
+  }
 }
 
 /* Element defaults live in a layer so component styles (including invitation pages) always win. */
@@ -53,10 +91,11 @@
     scroll-behavior: smooth;
   }
 
+  /* clip, not hidden: hidden would turn body into a scroll container and break sticky sections. */
   html,
   body {
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -65,7 +104,9 @@
     color: var(--color-ink);
     font-family: var(--font-body);
     font-size: 16px;
+    font-weight: 300;
     line-height: 1.6;
+    font-synthesis: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -75,14 +116,20 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
+    font-stretch: 75%;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.2;
     color: var(--color-ink);
   }
 
   p {
     color: var(--color-ink-soft);
+  }
+
+  strong,
+  b {
+    font-weight: 500;
   }
 
   a {
@@ -101,7 +148,7 @@
   }
 
   :focus-visible {
-    outline: 3px solid currentColor;
+    outline: 2px solid currentColor;
     outline-offset: 5px;
   }
 
@@ -116,6 +163,63 @@
   }
 }
 
+/* ---------- Scroll-in animations (same names and timings as the reference) ---------- */
+
+.js [data-anim]:not([data-in]) {
+  opacity: 0;
+}
+
+[data-in][data-anim] {
+  animation-duration: var(--dur, 0.5s);
+  animation-delay: var(--delay, 0s);
+  animation-fill-mode: both;
+}
+
+[data-in][data-anim="fadeIn"] {
+  animation-name: fadeIn;
+}
+
+[data-in][data-anim="slideInUp"] {
+  animation-name: slideInUp;
+}
+
+[data-in][data-anim="slideInRight"] {
+  animation-name: slideInRight;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-in][data-anim] {
+    animation: none;
+  }
+}
+
 /* ---------- Shared layout utilities ---------- */
 
 .container {
@@ -124,18 +228,20 @@
 }
 
 .section {
-  padding-block: clamp(3.5rem, 6vw, 6.5rem);
+  padding-block: clamp(4rem, 8vw, 7.5rem);
 }
 
+/* Small engraved capitals used above headings and on links. */
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  color: var(--color-accent-strong);
-  font-size: 0.9rem;
+  display: inline-block;
+  color: var(--color-ink);
+  font-family: var(--font-wide);
+  font-size: 16px;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
-
 
 .sectionHead {
   max-width: 640px;
@@ -143,13 +249,13 @@
 }
 
 .sectionHead h2 {
-  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  font-size: clamp(2.3rem, 4.4vw, 3.6rem);
   margin-top: 0.75rem;
 }
 
 .sectionHead p {
   margin-top: 0.9rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
   max-width: 52ch;
 }
 
@@ -162,62 +268,71 @@
   margin-inline: auto;
 }
 
-/* ---------- Buttons ---------- */
+/* Underlined capitals, like "Pogledajte sve →". */
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--font-wide);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: opacity 0.25s ease;
+}
+
+.textLink:hover {
+  opacity: 0.7;
+}
+
+/* ---------- Buttons: 46px pills with Archivo capitals ---------- */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 3rem;
-  padding: 0 1.6rem;
-  border-radius: var(--radius-full);
-  font-size: 0.95rem;
+  height: 46px;
+  padding: 0 28px;
+  border-radius: 24px;
+  border: 0;
+  font-family: var(--font-wide);
+  font-size: 13px;
   font-weight: 600;
-  border: 1px solid transparent;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: opacity 0.5s ease, background-color 0.5s ease;
   white-space: nowrap;
 }
 
-.btnPrimary {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  box-shadow: var(--shadow-sm);
+.btn:hover {
+  opacity: 0.8;
 }
 
-.btnPrimary:hover {
-  background: var(--color-primary-strong);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+.btnPrimary {
+  background: var(--color-wine);
+  color: var(--color-cream);
 }
 
 .btnSecondary {
-  background: transparent;
-  color: var(--color-ink);
-  border-color: var(--color-border-strong);
-}
-
-.btnSecondary:hover {
-  border-color: var(--color-ink);
-  transform: translateY(-1px);
+  background: var(--color-pink);
+  color: var(--color-cream);
 }
 
 .btnGhostOnDark {
   background: transparent;
-  color: var(--color-on-primary);
-  border-color: rgba(246, 241, 228, 0.3);
-}
-
-.btnGhostOnDark:hover {
-  border-color: rgba(246, 241, 228, 0.7);
-  transform: translateY(-1px);
+  color: #fff;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
 }
 
 @media (max-width: 640px) {
   .btn {
-    height: 2.75rem;
-    padding: 0 1.35rem;
-    font-size: 0.9rem;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 11px;
   }
 }

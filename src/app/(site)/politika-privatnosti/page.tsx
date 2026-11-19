@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Politika privatnosti",
-  description: "Kako Lumière prikuplja, koristi i čuva podatke o ličnosti.",
+  description: "Kako JustSend prikuplja, koristi i čuva podatke o ličnosti.",
 };
 
 export default function PrivacyPage() {

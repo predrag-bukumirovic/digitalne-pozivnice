@@ -15,6 +15,8 @@ export default async function ContactPage({ searchParams }: PageProps<"/kontakt"
   const params = await searchParams;
   const selectedTemplate = catalog.find((content) => content.slug === params.sablon)?.slug ?? "";
   const selectedPackage = params.paket === "po-meri" ? "po-meri" : "sablon";
+  const text = (value: string | string[] | undefined) => (typeof value === "string" ? value.slice(0, 100) : undefined);
+  const prefill = { name: text(params.ime), phone: text(params.telefon) };
 
   return (
     <>
@@ -48,6 +50,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/kontakt"
             templates={catalog.map((content) => ({ slug: content.slug, name: content.templateName, category: content.category }))}
             selectedTemplate={selectedTemplate}
             selectedPackage={selectedPackage}
+            prefill={prefill}
           />
         </div>
       </section>

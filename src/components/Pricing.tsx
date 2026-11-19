@@ -40,7 +40,8 @@ export default function Pricing({ showHeading = true }: { showHeading?: boolean 
       <div className="container">
         {showHeading && (
           <div className={styles.head}>
-            <h2 className={styles.title}>Dve cene. Bez pretplate.</h2>
+            <p className="eyebrow">Bez pretplate i skrivenih troškova</p>
+            <h2 className={styles.title}>Dve cene</h2>
             <p className={styles.lead}>Plaćate jednom, tek kada pogledate i odobrite pozivnicu.</p>
           </div>
         )}

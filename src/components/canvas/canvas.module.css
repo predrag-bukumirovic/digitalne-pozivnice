@@ -1,0 +1,85 @@
+.section {
+  position: relative;
+  height: var(--sh);
+}
+
+.section > .canvas {
+  height: 100%;
+}
+
+/* Window-tall sections center their canvas vertically, like the reference's full-height canvases. */
+.screen {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  height: 100svh;
+}
+
+.screen > .canvas {
+  flex: none;
+  height: var(--sh);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.canvas {
+  position: relative;
+  width: calc(1200 * var(--u));
+  margin-inline: auto;
+}
+
+.el {
+  position: absolute;
+  left: var(--l);
+  top: var(--t);
+  width: var(--w);
+  height: var(--h);
+  rotate: var(--r);
+}
+
+.fs {
+  font-size: var(--fs);
+}
+
+@media (min-width: 768px) {
+  .mobileOnly {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    height: var(--msh);
+  }
+
+  .screen {
+    height: 100svh;
+  }
+
+  .screen > .canvas {
+    height: var(--msh);
+  }
+
+  .canvas {
+    width: calc(320 * var(--u));
+  }
+
+  .el {
+    left: var(--ml);
+    top: var(--mt);
+    width: var(--mw);
+    height: var(--mh);
+    rotate: var(--mr);
+  }
+
+  .fs {
+    font-size: var(--mfs);
+  }
+
+  .desktopOnly {
+    display: none !important;
+  }
+}

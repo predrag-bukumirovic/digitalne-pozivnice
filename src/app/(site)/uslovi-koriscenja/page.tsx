@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Uslovi korišćenja",
-  description: "Uslovi poručivanja i korišćenja digitalnih pozivnica Lumière.",
+  description: "Uslovi poručivanja i korišćenja digitalnih pozivnica JustSend.",
 };
 
 export default function TermsPage() {

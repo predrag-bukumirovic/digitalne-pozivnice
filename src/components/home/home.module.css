@@ -1,0 +1,525 @@
+/*
+ * Home page drawn after the reference design. Sizes come from the El/Section props (design pixels);
+ * this file only holds type, color and the few effects.
+ */
+
+/* ---------- Type ---------- */
+
+.serif {
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.center {
+  text-align: center;
+}
+
+.sub {
+  font-family: var(--font-wide);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.para {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.para p + p {
+  margin-top: 1.6em;
+}
+
+.loose {
+  letter-spacing: 0.05em;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.light {
+  color: var(--color-white);
+}
+
+.light p {
+  color: inherit;
+}
+
+.dark {
+  color: var(--color-ink);
+}
+
+.dark p {
+  color: inherit;
+}
+
+.wine {
+  color: var(--color-wine);
+}
+
+/* Headings nested in colored cards take the card's text color. */
+.column h3,
+.qCard h3 {
+  color: inherit;
+}
+
+/* Pill buttons: Archivo capitals centered in a 24px-radius pill. */
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(24 * var(--u));
+  color: var(--color-cream);
+  font-family: var(--font-wide);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.5s ease;
+}
+
+.pill:hover {
+  opacity: 0.8;
+}
+
+.pillWine {
+  background: var(--color-wine);
+}
+
+.pillPink {
+  background: var(--color-pink);
+}
+
+/* Window onto a live invitation preview. */
+.shot {
+  overflow: hidden;
+  background: #ddd;
+}
+
+.round10 {
+  border-radius: calc(10 * var(--u));
+}
+
+/* Instant-camera frame around a preview. */
+.polaroid {
+  background: linear-gradient(160deg, #fdfdfc, #ececea);
+  border-radius: calc(4 * var(--u));
+  box-shadow: 0 calc(8 * var(--u)) calc(18 * var(--u)) rgba(0, 0, 0, 0.28), inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.polaroidPhoto {
+  position: absolute;
+  left: 8.5%;
+  top: 9.5%;
+  width: 83%;
+  height: 70%;
+  overflow: hidden;
+  background: #ddd;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- Hero ---------- */
+
+/* Photo layer: the image at 70% over black, like the reference's hero. */
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Scaled up and anchored left so the phone in the photo sits clear of the headline. */
+.heroPhotoInner {
+  position: absolute;
+  left: 0;
+  top: -10%;
+  width: 120%;
+  height: 120%;
+}
+
+.heroPhoto img {
+  object-fit: cover;
+  object-position: 0 50%;
+  opacity: 0.72;
+}
+
+.heroPhoto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.22), transparent 55%);
+}
+
+.hero {
+  overflow: hidden;
+  background: #000;
+}
+
+.heroTitle {
+  letter-spacing: -0.015em;
+}
+
+.heroScript {
+  display: inline-block;
+  margin-left: 0.12em;
+  font-size: 0.84em;
+  vertical-align: -0.12em;
+}
+
+.badge {
+  animation: badgeSpin 8s linear infinite;
+}
+
+@keyframes badgeSpin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* ---------- Intro (red, pinned) ---------- */
+
+.intro {
+  background: var(--color-red);
+}
+
+/* Rounded top edge that laps 21px over the hero. */
+.intro::before {
+  content: "";
+  position: absolute;
+  top: calc(-21 * var(--u));
+  left: 0;
+  right: 0;
+  height: calc(100 * var(--u));
+  border-radius: calc(30 * var(--u)) calc(30 * var(--u)) 0 0;
+  background: var(--color-red);
+}
+
+.spin {
+  transition: transform 0.9s linear;
+}
+
+/* ---------- Services (pinned folders) ---------- */
+
+.servicesBg {
+  background: var(--color-blush);
+}
+
+/* Type sizes of the folder text, in design pixels. */
+.tab,
+.column {
+  --tab-fs: 14;
+  --title-fs: 51;
+  --text-fs: 14;
+  --list-fs: 14;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(26 * var(--u)) calc(26 * var(--u)) 0 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.column > * + * {
+  margin-top: calc(14 * var(--u));
+}
+
+.includes {
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-size: calc(15 * var(--u));
+}
+
+.bullets {
+  list-style: none;
+}
+
+.bullets li::before {
+  content: "• ";
+}
+
+.columnPill {
+  margin-top: calc(26 * var(--u)) !important;
+  width: calc(219 * var(--u));
+  height: calc(46 * var(--u));
+  font-size: calc(13 * var(--u));
+}
+
+.spacer {
+  height: 100vh;
+  height: 100svh;
+}
+
+/* ---------- Questions (cards like the reference's reviews) ---------- */
+
+.questions {
+  position: relative;
+  background: #fff;
+}
+
+.qCard {
+  --q-fs: 32;
+  --a-fs: 15;
+  --l-fs: 14;
+  display: flex;
+  flex-direction: column;
+  padding: calc(51 * var(--u)) calc(48 * var(--u)) calc(53 * var(--u)) calc(50 * var(--u));
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 5px;
+}
+
+.qWide {
+  padding: calc(65 * var(--u)) calc(70 * var(--u)) calc(55 * var(--u)) calc(69 * var(--u));
+}
+
+.qAnswer {
+  margin-top: calc(12 * var(--u));
+}
+
+.qFoot {
+  display: flex;
+  align-items: center;
+  gap: calc(19 * var(--u));
+  margin-top: auto;
+}
+
+.qAvatar {
+  position: relative;
+  flex: none;
+  width: calc(62 * var(--u));
+  height: calc(62 * var(--u));
+  overflow: hidden;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+.qWide .qAvatar {
+  width: calc(53 * var(--u));
+  height: calc(53 * var(--u));
+}
+
+.qLabel {
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+/* ---------- Marquee ---------- */
+
+.marquee {
+  position: relative;
+  background: var(--color-blush);
+}
+
+.marqueeText {
+  fill: #fff;
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-size: 16px;
+  font-weight: 300;
+  dominant-baseline: middle;
+  white-space: pre;
+}
+
+.marqueeSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  overflow: visible;
+}
+
+/* ---------- About ---------- */
+
+.about {
+  position: relative;
+  background: var(--color-blush);
+}
+
+/* ---------- Live demo ---------- */
+
+.demo {
+  position: relative;
+  z-index: 2;
+  background: var(--color-red);
+}
+
+/* ---------- Quick contact ---------- */
+
+.contact {
+  position: relative;
+  background: var(--color-cream-deep);
+}
+
+.form {
+  position: absolute;
+  inset: 0;
+}
+
+.field {
+  display: flex;
+  background: #fff;
+}
+
+.field input {
+  width: 100%;
+  min-width: 0;
+  padding: 0 calc(19 * var(--u));
+  border: 0;
+  background: transparent;
+  color: #4c4c4b;
+  font-family: var(--font-wide);
+  font-size: calc(14 * var(--u));
+  letter-spacing: 0.025em;
+  outline-offset: -2px;
+}
+
+.field input::placeholder {
+  color: #4c4c4b;
+  opacity: 1;
+}
+
+.submit {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  cursor: pointer;
+}
+
+.float {
+  display: flex;
+  justify-content: center;
+}
+
+.float svg {
+  width: calc(150 * var(--u));
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(30 * var(--u)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge,
+  .float svg {
+    animation: none;
+  }
+}
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 767px) {
+  .heroPhotoInner {
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .heroPhoto img {
+    object-position: 50% 50%;
+  }
+
+  .heroPhoto::after {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1));
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .mCenter {
+    text-align: center;
+  }
+
+  .column > * + * {
+    margin-top: calc(8 * var(--u));
+  }
+
+  .tab,
+  .column {
+    --tab-fs: 7;
+    --title-fs: 25;
+    --text-fs: 11;
+    --list-fs: 10;
+  }
+
+  .columnPill {
+    margin-top: calc(14 * var(--u)) !important;
+    width: calc(135 * var(--u));
+    height: calc(32 * var(--u));
+    font-size: calc(9 * var(--u));
+  }
+
+  .includes {
+    font-size: calc(11 * var(--u));
+  }
+
+  .tab {
+    border-radius: calc(16 * var(--u)) calc(16 * var(--u)) 0 0;
+  }
+
+  .intro::before {
+    top: calc(-19 * var(--u));
+    height: calc(60 * var(--u));
+    border-radius: calc(25 * var(--u)) calc(25 * var(--u)) 0 0;
+  }
+
+  .qCard {
+    --q-fs: 20;
+    --a-fs: 11;
+    --l-fs: 9;
+    padding: calc(38 * var(--u)) calc(22 * var(--u)) calc(30 * var(--u)) calc(23 * var(--u));
+  }
+
+  .qAvatar,
+  .qWide .qAvatar {
+    width: calc(50 * var(--u));
+    height: calc(50 * var(--u));
+  }
+
+  .qFoot {
+    gap: calc(9 * var(--u));
+  }
+
+  .float svg {
+    width: calc(60 * var(--u));
+  }
+
+  .marqueeText {
+    font-size: 14px;
+  }
+}

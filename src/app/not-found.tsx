@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Motion from "@/components/canvas/Motion";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
@@ -6,6 +7,7 @@ import PageHeader from "@/components/PageHeader";
 export default function NotFound() {
   return (
     <>
+      <Motion />
       <Header />
       <main>
         <PageHeader eyebrow="Greška 404" title="Ova stranica ne postoji">

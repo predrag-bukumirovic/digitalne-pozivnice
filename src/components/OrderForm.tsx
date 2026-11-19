@@ -19,16 +19,21 @@ export default function OrderForm({
   templates,
   selectedTemplate,
   selectedPackage,
+  prefill,
 }: {
   templates: { slug: string; name: string; category: string }[];
   selectedTemplate: string;
   selectedPackage: string;
+  /** Name and phone carried over from the quick form on the home page. */
+  prefill?: { name?: string; phone?: string };
 }) {
   const [state, formAction, pending] = useActionState(sendOrder, initialState);
   const values = state.fields ?? {
     package: selectedPackage,
     template: selectedTemplate,
     eventType: templates.find((t) => t.slug === selectedTemplate)?.category ?? "",
+    name: prefill?.name ?? "",
+    phone: prefill?.phone ?? "",
   };
 
   if (state.status === "success") {

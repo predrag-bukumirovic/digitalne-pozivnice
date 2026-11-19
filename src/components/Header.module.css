@@ -1,116 +1,237 @@
+/*
+ * Takes no room in the page flow: the pill floats over the first section.
+ * Measurements follow the reference (design pixels × --u); the pill spans the window
+ * 46px from the left and 45px from the right, with the side links locked to its edges.
+ */
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: rgba(250, 246, 239, 0.82);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  z-index: 40;
+  height: 0;
 }
 
 .bar {
+  position: relative;
+  top: calc(12 * var(--u));
+  height: calc(63 * var(--u));
+  margin: 0 calc(45 * var(--u)) 0 calc(46 * var(--u));
+  border-radius: calc(40 * var(--u));
+  background: var(--color-wine);
+  box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 5px;
+  color: #fff;
+}
+
+.icons {
+  position: absolute;
+  left: calc(29 * var(--u));
+  top: 50%;
+  display: flex;
+  gap: calc(14 * var(--u));
+  translate: 0 -50%;
+}
+
+.icons a,
+.panelIcons a {
+  display: block;
+  width: calc(20 * var(--u));
+  color: var(--color-blush);
+  transition: color 0.5s ease;
+}
+
+.icons a:hover,
+.panelIcons a:hover {
+  color: var(--color-pink);
+}
+
+.links {
+  position: absolute;
+  top: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
-  gap: 2rem;
-  height: 4.75rem;
+}
+
+.linksLeft {
+  left: calc(102 * var(--u));
+}
+
+.linksRight {
+  right: calc(20 * var(--u));
+}
+
+/* Each link sits centered in a 96–106px box, like the reference. */
+.links a {
+  position: relative;
+  width: calc(100 * var(--u));
+  font-family: var(--font-wide);
+  font-size: calc(12 * var(--u));
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.5s ease;
+}
+
+.linksLeft a + a {
+  margin-left: calc(-4 * var(--u));
+}
+
+.links a:hover,
+.links a[aria-current="page"] {
+  color: var(--color-pink);
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--color-ink);
-  margin-right: auto;
-}
-
-.mark {
-  width: 1.9rem;
-  height: 1.9rem;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft) 55%, var(--color-accent));
-  box-shadow: var(--shadow-sm);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-ink-soft);
-}
-
-.nav a {
-  transition: color 0.15s ease;
-}
-
-.nav a:hover {
-  color: var(--color-ink);
-}
-
-.cta {
-  height: 2.75rem;
-  padding: 0 1.3rem;
-  font-size: 0.9rem;
+  font-size: calc(32 * var(--u));
+  font-stretch: 75%;
+  font-weight: 300;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: fadeIn 1s both;
 }
 
 .menuButton {
   display: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--color-ink);
+  position: absolute;
+  right: calc(18 * var(--u));
+  top: 50%;
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  translate: 0 -50%;
   cursor: pointer;
 }
 
-.mobileMenu {
+.panel {
   display: none;
 }
 
-.mobileMenu[hidden] {
-  display: none;
-}
+@media (max-width: 767px) {
+  .bar {
+    top: calc(11 * var(--u));
+    height: calc(50 * var(--u));
+    margin: 0 calc(13 * var(--u));
+  }
 
-.header a:focus-visible,
-.menuButton:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 4px;
-}
-
-@media (max-width: 980px) {
-  .nav,
-  .cta {
+  .icons,
+  .links {
     display: none;
   }
 
-  .menuButton {
-    display: inline-flex;
+  .brand {
+    left: calc(23 * var(--u));
+    translate: 0 -50%;
+    font-size: calc(19 * var(--u));
   }
 
-  .mobileMenu {
+  .menuButton {
+    display: block;
+  }
+
+  /* Wine panel that slides down from the top. */
+  .panel {
+    position: fixed;
+    inset: 0 0 auto;
+    display: block;
+    height: calc(403 * var(--u));
+    border-radius: 0 0 calc(25 * var(--u)) calc(25 * var(--u));
+    background: var(--color-wine);
+    box-shadow: rgba(238, 216, 216, 0.1) 0 0 63px;
+    color: #fff;
+    animation: slideInDown 0.5s both;
+  }
+
+  .panelBrand {
+    position: absolute;
+    left: calc(18 * var(--u));
+    top: calc(16 * var(--u));
+    font-family: var(--font-display);
+    font-size: calc(26 * var(--u));
+    font-stretch: 75%;
+    font-weight: 300;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .close {
+    position: absolute;
+    right: calc(13 * var(--u));
+    top: calc(14 * var(--u));
+    width: calc(24 * var(--u));
+    height: calc(24 * var(--u));
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-blush);
+    cursor: pointer;
+  }
+
+  .panelLine {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(61 * var(--u));
+    height: 2px;
+    background: var(--color-line);
+  }
+
+  .panelLinks {
+    position: absolute;
+    left: calc(90 * var(--u));
+    top: calc(90 * var(--u));
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem 1.4rem 1.75rem;
-    border-top: 1px solid var(--color-border);
-    background: var(--color-bg);
-    font-weight: 500;
+    align-items: center;
+    width: calc(141 * var(--u));
+  }
+
+  .panelLinks a {
+    font-family: var(--font-display);
+    font-size: calc(20 * var(--u));
+    font-stretch: 75%;
+    font-weight: 300;
+    line-height: calc(31 * var(--u));
+    transition: color 0.5s ease;
+  }
+
+  .panelLinks a:hover,
+  .panelLinks a[aria-current="page"] {
+    color: var(--color-pink);
+  }
+
+  .panelSeal {
+    position: absolute;
+    left: calc(251 * var(--u));
+    top: calc(222 * var(--u));
+    width: calc(53 * var(--u));
+    rotate: -7deg;
+  }
+
+  .panelIcons {
+    position: absolute;
+    left: calc(140 * var(--u));
+    top: calc(355 * var(--u));
+    display: flex;
+    gap: calc(10 * var(--u));
   }
 }
 
-.nav a[aria-current="page"] {
-  color: var(--color-ink);
-  font-weight: 600;
-}
-
-.mobileMenu a[aria-current="page"] {
-  color: var(--color-primary);
-  font-weight: 600;
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }

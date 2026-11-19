@@ -1,0 +1,478 @@
+.theme {
+  --inv-bg: #fffdf4;
+  --inv-alt: #eef6e0;
+  --inv-text: #2e4a2b;
+  --inv-muted: #5a6f52;
+  --inv-accent: #ee8636;
+  --inv-on-accent: #fff;
+  --inv-line: rgba(46, 74, 43, 0.16);
+  --inv-display: var(--font-dino), system-ui, sans-serif;
+  --inv-display-weight: 800;
+  --inv-display-tracking: 0;
+  --inv-intro-weight: 600;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
+  --inv-radius: 28px;
+  /* Same green as the grass at the bottom of the hero, so the scene runs into the countdown. */
+  --inv-countdown-bg: #6aa84f;
+  --inv-countdown-text: #fff;
+  /* Timeline marks: orange, green, teal, like the bunting. */
+  --inv-step-1: #f08c3e;
+  --inv-step-2: #6aa84f;
+  --inv-step-3: #3fa69a;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  /* Stage width: also capped by height, so on a laptop the whole scene fits on the first screen. */
+  --w: min(100cqi, 600px, 52svh);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: min(100svh, 940px);
+  overflow: hidden;
+  background:
+    radial-gradient(60% 40% at 12% 40%, rgba(169, 210, 111, 0.22), transparent 70%),
+    radial-gradient(50% 35% at 88% 52%, rgba(240, 140, 62, 0.12), transparent 70%),
+    radial-gradient(40% 30% at 50% 64%, rgba(95, 184, 168, 0.12), transparent 70%),
+    #fffdf4;
+  color: #2e4a2b;
+  text-align: center;
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+/* Outside the invitation page the marketing site's paragraph color would leak in. */
+:where(.preview) :where(p, h1) {
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.garland {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  display: flex;
+  translate: -50% 0;
+  pointer-events: none;
+}
+
+.tile {
+  display: block;
+  flex: none;
+  width: max(var(--w), 100vw / 3);
+  height: auto;
+}
+
+.compact .tile {
+  width: var(--w);
+}
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dot {
+  position: absolute;
+  width: calc(var(--w) * 0.018);
+  height: calc(var(--w) * 0.036);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: drift 5s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  to {
+    translate: 0 calc(var(--w) * 0.025);
+  }
+}
+
+.compact .dot {
+  animation: none;
+}
+
+/* Extra confetti for the empty sides of wide screens; on phones it would land on the text. */
+.compact .wide {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .wide {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}
+
+/* ---------- Text ---------- */
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--w);
+  padding: calc(var(--w) * 0.33) calc(var(--w) * 0.06) calc(var(--w) * 0.02);
+  font-family: var(--inv-display);
+  line-height: 1.05;
+}
+
+/* Gold glitter script with a white paper edge, like the cut-out party banner. */
+.banner {
+  padding: 0 0.15em 0.12em;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 0.5px, transparent 1px) 0 0 / 5px 5px,
+    radial-gradient(circle, rgba(150, 95, 10, 0.55) 0 0.6px, transparent 1.1px) 2px 3px / 7px 6px,
+    linear-gradient(170deg, #fbe08a, #e9a93a 45%, #f6cd5e 70%, #d9932c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: var(--font-dino-script), cursive;
+  font-size: calc(var(--w) * 0.088);
+  line-height: 1.3;
+  rotate: -4deg;
+  filter: drop-shadow(0.025em 0 0 #fff) drop-shadow(-0.025em 0 0 #fff) drop-shadow(0 0.025em 0 #fff) drop-shadow(0 -0.025em 0 #fff)
+    drop-shadow(0 0.04em 0.05em rgba(120, 80, 20, 0.25));
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  gap: 0.03em;
+  margin-top: 1%;
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.name span:nth-child(odd) {
+  rotate: -5deg;
+}
+
+.name span:nth-child(even) {
+  rotate: 4deg;
+  translate: 0 0.04em;
+}
+
+.age {
+  display: flex;
+  align-items: center;
+  gap: 0.18em;
+  color: #3f7f35;
+  font-size: calc(var(--w) * 0.075);
+  font-weight: 800;
+}
+
+/* The big number as a dinosaur balloon: satin green, orange spots, plates down its back. */
+.balloon {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  margin-right: 0.06em;
+  font-size: 3.1em;
+  line-height: 0.95;
+  rotate: -6deg;
+  filter: drop-shadow(0.03em 0.05em 0.02em rgba(31, 94, 79, 0.25));
+}
+
+.plates {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.number {
+  display: block;
+  background:
+    radial-gradient(circle at 64% 24%, #c8693a 0 0.05em, transparent 0.056em),
+    radial-gradient(circle at 76% 40%, #c8693a 0 0.032em, transparent 0.038em),
+    radial-gradient(circle at 70% 54%, #c8693a 0 0.024em, transparent 0.03em),
+    radial-gradient(ellipse 0.06em 0.2em at 30% 30%, rgba(255, 255, 255, 0.45), transparent),
+    linear-gradient(160deg, #5db497, #2f8069 55%, #276b58);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  -webkit-text-stroke: 0.025em #1f5e4f;
+}
+
+.lead {
+  margin-top: 2%;
+  color: #3fa69a;
+  font-size: calc(var(--w) * 0.058);
+  font-weight: 700;
+}
+
+.who {
+  max-width: 14ch;
+  margin-top: 1%;
+  color: #2e4a2b;
+  font-size: calc(var(--w) * 0.088);
+  font-weight: 900;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.when {
+  margin-top: 4.5%;
+  padding: 0.5em 1.2em 0.45em;
+  border-radius: 999px;
+  background: #f08c3e;
+  color: #fff;
+  font-size: calc(var(--w) * 0.036);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.venue {
+  margin-top: 3%;
+  color: #5a6f52;
+  font-size: calc(var(--w) * 0.046);
+  font-weight: 700;
+}
+
+/* ---------- Ground ---------- */
+
+.scene {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 100%;
+  /* Never shorter than the strip's own proportions (340 / 1600), so wide screens don't crop the palm tops. */
+  height: max(calc(var(--w) * 0.6), 100cqi * 340 / 1600);
+  margin-top: calc(var(--w) * -0.05);
+  container-type: size;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Placed with the same math as the layers' "xMidYMax slice": centered, bottom-aligned. */
+.actor {
+  --s: max(100cqw / 1600, 100cqh / 340);
+  position: absolute;
+  left: calc(50% + (var(--x) - 800) * var(--s));
+  top: calc(100% - (340 - var(--y)) * var(--s));
+  width: calc(var(--aw) * var(--s));
+  height: calc(var(--ah) * var(--s));
+}
+
+/* ---------- Moving dinosaurs ---------- */
+
+.hop {
+  transform-origin: 50% 100%;
+  animation: hop 1.7s ease-in-out infinite;
+}
+
+@keyframes hop {
+  0%,
+  55%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  25% {
+    translate: 0 -7%;
+    rotate: -3deg;
+  }
+  40% {
+    translate: 0 0;
+    rotate: 1deg;
+  }
+}
+
+.sway {
+  transform-origin: 62% 100%;
+  animation: sway 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+  from {
+    rotate: -1.8deg;
+  }
+  to {
+    rotate: 1.6deg;
+  }
+}
+
+.nod {
+  transform-origin: 55% 100%;
+  animation: nod 3.4s ease-in-out infinite;
+}
+
+@keyframes nod {
+  0%,
+  60%,
+  100% {
+    rotate: 0deg;
+  }
+  70% {
+    rotate: -3deg;
+  }
+  80% {
+    rotate: 1deg;
+  }
+  90% {
+    rotate: -2deg;
+  }
+}
+
+.wobble {
+  transform-origin: 50% 100%;
+  animation: wobble 2.8s ease-in-out infinite;
+}
+
+@keyframes wobble {
+  0%,
+  50%,
+  100% {
+    rotate: 0deg;
+  }
+  60% {
+    rotate: -8deg;
+  }
+  70% {
+    rotate: 7deg;
+  }
+  80% {
+    rotate: -5deg;
+  }
+  90% {
+    rotate: 3deg;
+  }
+}
+
+.puff {
+  transform-origin: 40% 100%;
+  animation: puff 3.6s ease-out infinite;
+}
+
+@keyframes puff {
+  0% {
+    translate: 0 15%;
+    scale: 0.8;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    translate: 6% -40%;
+    scale: 1.15;
+    opacity: 0;
+  }
+}
+
+.glide {
+  animation: glide 7s ease-in-out infinite alternate;
+}
+
+@keyframes glide {
+  from {
+    translate: -50% 12%;
+    rotate: -4deg;
+  }
+  50% {
+    translate: 0 -14%;
+    rotate: 2deg;
+  }
+  to {
+    translate: 60% 6%;
+    rotate: 5deg;
+  }
+}
+
+.flutter {
+  animation:
+    flap 0.22s ease-in-out infinite alternate,
+    drift 5s ease-in-out infinite alternate;
+}
+
+@keyframes flap {
+  to {
+    scale: 0.35 1;
+  }
+}
+
+@keyframes drift {
+  from {
+    translate: -30% 0;
+  }
+  50% {
+    translate: 15% -45%;
+  }
+  to {
+    translate: 40% 15%;
+  }
+}
+
+/* Out of step with its twin. */
+.late {
+  animation-delay: -2.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actor,
+  .closingArt {
+    animation: none;
+  }
+}
+
+.closingArt {
+  display: block;
+  width: 5.5rem;
+  height: auto;
+  margin: 0 auto 1.25rem;
+}
+
+/* Small card: name, age and date only. */
+.compact .content {
+  flex: 1 1 auto;
+  padding-top: calc(var(--w) * 0.27);
+}
+
+.compact .lead,
+.compact .who,
+.compact .venue {
+  display: none;
+}
+
+.compact .scene {
+  height: calc(var(--w) * 0.5);
+  margin-top: calc(var(--w) * -0.1);
+}

@@ -1,104 +1,113 @@
 .footer {
-  background: var(--color-primary-strong);
-  color: rgba(246, 241, 228, 0.7);
-  margin-top: clamp(2rem, 5vw, 4rem);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-footer);
+  color: #fff;
 }
 
-.top {
+.thumb {
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+.thumb:hover {
+  opacity: 0.8;
+}
+
+.line {
+  background: var(--color-line);
+}
+
+.heading {
+  color: #fff;
+  line-height: 1.2;
+}
+
+.links {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
-  gap: 2.5rem;
-  padding-block: clamp(3rem, 6vw, 4.5rem) 3rem;
+  gap: calc(12.6 * var(--u));
+  list-style: none;
+  font-family: var(--font-wide);
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
-.brandCol {
-  max-width: 300px;
+.contactLinks {
+  gap: calc(15 * var(--u));
 }
 
-.brand {
+.links a,
+.credit a {
+  transition: color 0.5s ease;
+}
+
+.links a:hover,
+.credit a:hover {
+  color: var(--color-pink);
+}
+
+.icons {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--color-on-primary);
+  gap: calc(19 * var(--u));
 }
 
-.mark {
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 7px;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-blush));
+.icons a {
+  width: calc(22 * var(--u));
+  color: var(--color-blush);
+  transition: color 0.5s ease;
 }
 
-.tagline {
-  margin-top: 1rem;
-  font-size: 0.92rem;
-  color: rgba(246, 241, 228, 0.62);
+.icons a:hover {
+  color: var(--color-pink);
 }
 
-.colHeading {
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(35 * var(--u));
+  background: var(--color-pink);
+  color: #fff;
+  font-family: var(--font-small);
   text-transform: uppercase;
-  color: var(--color-on-primary);
+  transition: opacity 0.5s ease;
 }
 
-.col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  margin-top: 1.1rem;
-  font-size: 0.92rem;
+.pill:hover {
+  opacity: 0.8;
 }
 
-.col a:hover {
-  color: var(--color-on-primary);
+.giant {
+  color: #fff;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-.footer a:focus-visible {
-  outline: 2px solid var(--color-on-primary);
-  outline-offset: 4px;
+.credit {
+  color: #fff;
+  font-family: var(--font-small);
+  text-align: right;
 }
 
-.bottom {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding-block: 1.5rem;
-  border-top: 1px solid rgba(246, 241, 228, 0.14);
-  font-size: 0.82rem;
-}
-
-@media (max-width: 860px) {
-  .top {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 767px) {
+  .links {
+    gap: calc(7 * var(--u));
   }
 
-  .brandCol {
-    grid-column: 1 / -1;
-    max-width: none;
+  .contactLinks {
+    gap: calc(8 * var(--u));
   }
-}
 
-@media (max-width: 520px) {
-  .top {
-    grid-template-columns: 1fr;
+  .icons {
+    gap: calc(12 * var(--u));
   }
-}
 
-.legal {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
+  .icons a {
+    width: calc(20 * var(--u));
+  }
 
-.legal a:hover,
-.col a:hover {
-  color: var(--color-on-primary);
+  .credit {
+    text-align: center;
+  }
 }

@@ -10,6 +10,7 @@ import RodjendanPreview from "./templates/rodjendan/Preview";
 import RodjendanKonfetePreview from "./templates/rodjendan-konfete/Preview";
 import RodjendanOsamnaestPreview from "./templates/rodjendan-osamnaest/Preview";
 import RodjendanPrviPreview from "./templates/rodjendan-prvi/Preview";
+import RodjendanDinoPreview from "./templates/rodjendan-dino/Preview";
 import ProslavaBebePreview from "./templates/proslava-bebe/Preview";
 import ProslavaBebeMesecPreview from "./templates/proslava-bebe-mesec/Preview";
 import PoslovnoPreview from "./templates/poslovno/Preview";
@@ -25,6 +26,7 @@ const previews: Record<string, ComponentType> = {
   "rodjendan-konfete": RodjendanKonfetePreview,
   "rodjendan-osamnaest": RodjendanOsamnaestPreview,
   "rodjendan-prvi": RodjendanPrviPreview,
+  "rodjendan-dino": RodjendanDinoPreview,
   "proslava-bebe": ProslavaBebePreview,
   "proslava-bebe-mesec": ProslavaBebeMesecPreview,
   "poslovno": PoslovnoPreview,
@@ -35,3 +37,9 @@ export const invitations: { content: InvitationContent; Preview: ComponentType }
   content,
   Preview: previews[content.slug],
 }));
+
+export function invitationBySlug(slug: string) {
+  const found = invitations.find(({ content }) => content.slug === slug);
+  if (!found) throw new Error(`Nepoznat šablon: ${slug}`);
+  return found;
+}

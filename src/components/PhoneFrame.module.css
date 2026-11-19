@@ -1,30 +1,31 @@
+/* Phone mockup that scales with its box: every size is a share of the width or height. */
 .phone {
   isolation: isolate;
-  width: 250px;
+  width: 100%;
   aspect-ratio: 9 / 19;
-  padding: 9px;
-  border-radius: 44px;
+  padding: 3.6%;
+  border-radius: 17.6% / 8.3%;
   background: #1d1b18;
-  box-shadow: 0 40px 70px -30px rgba(33, 29, 24, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .screen {
   position: relative;
   height: 100%;
   overflow: hidden;
-  border-radius: 36px;
+  border-radius: 15.5% / 7%;
   background: #fff;
 }
 
 .screen::before {
   content: "";
   position: absolute;
-  top: 9px;
+  top: 1.8%;
   left: 50%;
   z-index: 5;
-  width: 74px;
-  height: 21px;
-  border-radius: 12px;
+  width: 32%;
+  height: 4.1%;
+  border-radius: 999px;
   background: #1d1b18;
   transform: translateX(-50%);
 }
