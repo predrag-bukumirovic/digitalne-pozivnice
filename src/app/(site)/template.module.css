@@ -1,0 +1,16 @@
+/* Opacity only: a transform here would change how the pinned (sticky) sections behave. */
+.page {
+  animation: pageIn 0.55s ease backwards;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+}

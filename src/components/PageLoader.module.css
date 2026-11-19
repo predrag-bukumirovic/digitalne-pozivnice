@@ -1,0 +1,136 @@
+/* Later page loads in the same session skip straight to the page (class set by the inline script). */
+.seen .loader {
+  display: none;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: var(--color-wine);
+  color: var(--color-cream);
+  animation: lift 0.85s cubic-bezier(0.76, 0, 0.24, 1) 1.95s forwards;
+}
+
+/* The curtain goes up with a soft rounded hem. */
+@keyframes lift {
+  to {
+    transform: translateY(-100%);
+    border-radius: 0 0 50% 50% / 0 0 90px 90px;
+    visibility: hidden;
+  }
+}
+
+.envelope {
+  width: 88px;
+  height: auto;
+  overflow: visible;
+}
+
+.body,
+.flap {
+  fill: none;
+  stroke: var(--color-pink);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.75s ease forwards;
+}
+
+.flap {
+  animation-delay: 0.4s;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.heart {
+  fill: var(--color-pink);
+  transform-box: fill-box;
+  transform-origin: center;
+  scale: 0;
+  animation: pop 0.5s cubic-bezier(0.3, 1.7, 0.5, 1) 0.9s forwards;
+}
+
+@keyframes pop {
+  to {
+    scale: 1.35;
+  }
+}
+
+.word {
+  display: flex;
+  margin-right: -0.24em; /* the last letter's tracking, so the word sits centered */
+  color: var(--color-cream);
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  line-height: 1;
+}
+
+.word span {
+  opacity: 0;
+  translate: 0 0.45em;
+  animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.line {
+  width: 0;
+  height: 1px;
+  background: var(--color-pink);
+  animation: grow 0.7s ease 1.25s forwards;
+}
+
+@keyframes grow {
+  to {
+    width: 120px;
+  }
+}
+
+/* Reduced motion: everything already in place, and a quick fade instead of the curtain. */
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    animation: fade 0.4s ease 0.8s forwards;
+  }
+
+  .body,
+  .flap,
+  .heart,
+  .word span,
+  .line {
+    animation: none;
+    opacity: 1;
+    scale: 1.35;
+    translate: none;
+    stroke-dashoffset: 0;
+  }
+
+  .line {
+    width: 120px;
+  }
+
+  @keyframes fade {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

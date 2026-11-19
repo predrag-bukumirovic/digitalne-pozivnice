@@ -18,7 +18,7 @@ export default function PricingPage() {
       <Pricing showHeading={false} />
       <section className="section">
         <div className="container">
-          <div className="sectionHead">
+          <div className="sectionHead center">
             <h2>Pitanja o porudžbini</h2>
           </div>
           <Faq />

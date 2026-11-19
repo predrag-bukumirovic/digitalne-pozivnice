@@ -72,13 +72,7 @@ export default function Slider({
       aria-roledescription="slajder"
       aria-label={label}
     >
-      {/* Native horizontal scrolling here, not the page's smooth-scroll wheel handling. */}
-      <div
-        ref={track}
-        className={styles.track}
-        tabIndex={0}
-        data-lenis-prevent-wheel
-      >
+      <div ref={track} className={styles.track} tabIndex={0}>
         {slides.map((slide, i) => (
           <div
             key={i}
