@@ -116,8 +116,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-stretch: 75%;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0;
     line-height: 1.2;
     color: var(--color-ink);

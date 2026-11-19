@@ -2,8 +2,10 @@
 export const site = {
   name: "JustSend",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://justsend.rs",
-  email: "kontakt@justsend.rs",
-  phone: "+381 11 123 4567",
+  email: "info@justsend.rs",
+  phone: "+381 66 937 0071",
+  /** Instagram profile name without "@"; shown in the footer once filled in. */
+  instagram: "",
   /** Shown in the footer and terms once filled in. */
   company: { name: "", pib: "", mb: "", address: "" },
 };

@@ -41,7 +41,7 @@
 }
 
 .fs {
-  font-size: var(--fs);
+  font-size: calc(var(--fs) * var(--fs-scale, 1));
 }
 
 @media (min-width: 768px) {
@@ -76,7 +76,7 @@
   }
 
   .fs {
-    font-size: var(--mfs);
+    font-size: calc(var(--mfs) * var(--fs-scale, 1));
   }
 
   .desktopOnly {

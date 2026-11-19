@@ -7,9 +7,13 @@
 
 .serif {
   font-family: var(--font-display);
-  font-stretch: 75%;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1;
+}
+
+/* Cormorant's capitals run wider than its lowercase; keep uppercase lines inside their boxes. */
+.serif.upper {
+  --fs-scale: 0.86;
 }
 
 .italic {
@@ -254,7 +258,6 @@
 
 .includes {
   font-family: var(--font-display);
-  font-stretch: 75%;
   font-size: calc(15 * var(--u));
 }
 
@@ -278,57 +281,62 @@
   height: 100svh;
 }
 
-/* ---------- Questions (cards like the reference's reviews) ---------- */
+/* ---------- Questions (a slider of answer cards) ---------- */
 
 .questions {
   position: relative;
+  padding-block: clamp(64px, 9vw, 110px) clamp(56px, 8vw, 96px);
   background: #fff;
 }
 
+.qTitle {
+  margin-bottom: clamp(28px, 4vw, 48px);
+  color: var(--color-ink);
+  font-size: clamp(42px, 7vw, 86px);
+  text-align: center;
+}
+
 .qCard {
-  --q-fs: 32;
-  --a-fs: 15;
-  --l-fs: 14;
   display: flex;
   flex-direction: column;
-  padding: calc(51 * var(--u)) calc(48 * var(--u)) calc(53 * var(--u)) calc(50 * var(--u));
-  border-radius: 5px;
+  min-height: clamp(330px, 34vw, 420px);
+  padding: clamp(30px, 3.6vw, 50px) clamp(24px, 3.4vw, 48px) clamp(28px, 3.4vw, 46px);
+  border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 5px;
 }
 
-.qWide {
-  padding: calc(65 * var(--u)) calc(70 * var(--u)) calc(55 * var(--u)) calc(69 * var(--u));
+.qCard h3 {
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.1;
 }
 
 .qAnswer {
-  margin-top: calc(12 * var(--u));
+  margin-top: 14px;
+  font-size: 15px;
 }
 
 .qFoot {
   display: flex;
   align-items: center;
-  gap: calc(19 * var(--u));
+  gap: 16px;
   margin-top: auto;
+  padding-top: 28px;
 }
 
 .qAvatar {
   position: relative;
   flex: none;
-  width: calc(62 * var(--u));
-  height: calc(62 * var(--u));
+  width: 58px;
+  height: 58px;
   overflow: hidden;
   border-radius: 50%;
   background: #ddd;
 }
 
-.qWide .qAvatar {
-  width: calc(53 * var(--u));
-  height: calc(53 * var(--u));
-}
-
 .qLabel {
+  font-size: 13px;
   letter-spacing: 0.06em;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 /* ---------- Marquee ---------- */
@@ -341,9 +349,8 @@
 .marqueeText {
   fill: #fff;
   font-family: var(--font-display);
-  font-stretch: 75%;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 500;
   dominant-baseline: middle;
   white-space: pre;
 }
@@ -449,12 +456,13 @@
     height: 100%;
   }
 
+  /* Phone in the photo slides right, out from under the headline; the left side darkens for contrast. */
   .heroPhoto img {
-    object-position: 50% 50%;
+    object-position: 42% 50%;
   }
 
   .heroPhoto::after {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1));
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.28) 60%, rgba(0, 0, 0, 0.08));
   }
 
   .center {
@@ -496,23 +504,6 @@
     top: calc(-19 * var(--u));
     height: calc(60 * var(--u));
     border-radius: calc(25 * var(--u)) calc(25 * var(--u)) 0 0;
-  }
-
-  .qCard {
-    --q-fs: 20;
-    --a-fs: 11;
-    --l-fs: 9;
-    padding: calc(38 * var(--u)) calc(22 * var(--u)) calc(30 * var(--u)) calc(23 * var(--u));
-  }
-
-  .qAvatar,
-  .qWide .qAvatar {
-    width: calc(50 * var(--u));
-    height: calc(50 * var(--u));
-  }
-
-  .qFoot {
-    gap: calc(9 * var(--u));
   }
 
   .float svg {

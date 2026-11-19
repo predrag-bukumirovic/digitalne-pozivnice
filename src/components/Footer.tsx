@@ -2,6 +2,7 @@ import Link from "next/link";
 import { El, Section, type Box } from "@/components/canvas/Canvas";
 import { Preview } from "@/components/home/art";
 import { ChatGlyph, HeartGlyph, MailGlyph, PhoneGlyph } from "@/components/home/glyphs";
+import { InstagramIcon } from "@/components/icons";
 import s from "@/components/home/home.module.css";
 import { nav, site } from "@/lib/site";
 import styles from "./Footer.module.css";
@@ -68,6 +69,13 @@ export default function Footer() {
           <li>
             <a href={tel}>{site.phone}</a>
           </li>
+          {site.instagram && (
+            <li>
+              <a href={`https://www.instagram.com/${site.instagram}/`} target="_blank" rel="noreferrer">
+                @{site.instagram}
+              </a>
+            </li>
+          )}
         </El>
 
         <El d={[861, 286, 300]} m={[34, 376, 200]} fs={[38, 27]} tag="h2" className={`${s.serif} ${styles.heading}`}>
@@ -86,6 +94,11 @@ export default function Footer() {
           <a href={whatsapp} aria-label="WhatsApp" target="_blank" rel="noreferrer">
             <HeartGlyph />
           </a>
+          {site.instagram && (
+            <a href={`https://www.instagram.com/${site.instagram}/`} aria-label="Instagram" target="_blank" rel="noreferrer">
+              <InstagramIcon />
+            </a>
+          )}
         </El>
         <El d={[861, 391, 204, 31]} m={[32, 457, 152, 26]} fs={[14, 11]} href="/kontakt" className={styles.pill}>
           Poručite odmah

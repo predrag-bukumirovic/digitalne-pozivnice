@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MailGlyph, PhoneGlyph, WaxSeal } from "@/components/home/glyphs";
+import { MailGlyph, PhoneGlyph } from "@/components/home/glyphs";
 import { isActive, nav, site } from "@/lib/site";
 import styles from "./Header.module.css";
 
@@ -88,9 +88,6 @@ export default function Header() {
             ))}
           </nav>
 
-          <span className={styles.panelSeal} aria-hidden="true">
-            <WaxSeal />
-          </span>
           <span className={styles.panelIcons}>
             <a href={`mailto:${site.email}`} aria-label="Pošaljite e-mail">
               <MailGlyph />

@@ -12,7 +12,7 @@ export default function QuickContact() {
       <El d={[321, 178, 558]} m={[68, 134, 186]} fs={[16, 12]} tag="p" anim="fadeIn" className={`${s.sub} ${s.dark} ${s.center}`}>
         Počnimo zajedno
       </El>
-      <El d={[264, 220, 673, 145]} m={[28, 159, 264, 102]} fs={[65, 36]} tag="h2" anim="fadeIn" className={`${s.serif} ${s.wine} ${s.center}`} style={{ lineHeight: 1.1 }}>
+      <El d={[264, 220, 673, 145]} m={[28, 159, 264, 102]} fs={[65, 32]} tag="h2" anim="fadeIn" className={`${s.serif} ${s.wine} ${s.center}`} style={{ lineHeight: 1.1 }}>
         Pozivnica koju će gosti <span className={s.italic}>zaista</span> otvoriti
       </El>
       <El d={[268, 377, 663]} m={[32, 278, 256]} fs={[16, 14]} tag="p" anim="fadeIn" className={`${s.para} ${s.dark} ${s.center}`}>

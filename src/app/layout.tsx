@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Archivo, Inter, Montserrat, Ms_Madi, Noto_Serif_Display, Poppins } from "next/font/google";
+import { Archivo, Cormorant, Inter, Montserrat, Ms_Madi, Poppins } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-/* Type of the reference design: a thin condensed display serif, Archivo, Poppins and a signature script. */
-const serif = Noto_Serif_Display({
+/* Headings: Cormorant, an elegant stationery serif; with Archivo, Poppins and a signature script. */
+const serif = Cormorant({
   variable: "--nf-serif",
   subsets: ["latin", "latin-ext"],
   style: ["normal", "italic"],
-  axes: ["wdth"],
 });
 
 const archivo = Archivo({

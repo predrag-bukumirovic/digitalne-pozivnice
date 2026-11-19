@@ -90,8 +90,7 @@
   translate: -50% -50%;
   font-family: var(--font-display);
   font-size: calc(32 * var(--u));
-  font-stretch: 75%;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -158,8 +157,7 @@
     top: calc(16 * var(--u));
     font-family: var(--font-display);
     font-size: calc(26 * var(--u));
-    font-stretch: 75%;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1;
     text-transform: uppercase;
   }
@@ -199,8 +197,7 @@
   .panelLinks a {
     font-family: var(--font-display);
     font-size: calc(20 * var(--u));
-    font-stretch: 75%;
-    font-weight: 300;
+    font-weight: 500;
     line-height: calc(31 * var(--u));
     transition: color 0.5s ease;
   }
@@ -208,14 +205,6 @@
   .panelLinks a:hover,
   .panelLinks a[aria-current="page"] {
     color: var(--color-pink);
-  }
-
-  .panelSeal {
-    position: absolute;
-    left: calc(251 * var(--u));
-    top: calc(222 * var(--u));
-    width: calc(53 * var(--u));
-    rotate: -7deg;
   }
 
   .panelIcons {
