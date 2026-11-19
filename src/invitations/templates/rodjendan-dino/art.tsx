@@ -584,6 +584,8 @@ function Trike() {
             "M24 80C10 82-2 90-10 100C6 100 18 96 32 92Z",
             ell(66, 84, 48, 30),
             ell(118, 64, 26, 22),
+            // Rounded snout with a beak-like tip, instead of a horn on the nose.
+            ell(139, 70, 12, 10),
             rr(34, 100, 20, 22, 8),
             rr(62, 104, 20, 18, 8),
             rr(88, 100, 20, 22, 8),
@@ -591,16 +593,19 @@ function Trike() {
           fill={C.yellow}
           edge={C.yellowDark}
         />
+        {/* Horns: two straight brow horns over the eye and a short straight one on the snout.
+            Flat ivory with a tan rim, so they stand out against the pale frill. */}
         <Wash
           d={[
-            "M106 46L98 22L116 42Z",
-            "M126 44L132 20L138 46Z",
-            "M140 62L152 50L148 68Z",
+            "M118 47L139 25L129 47Z",
+            "M106 49L125 24L117 49Z",
+            "M135 62L142 46L145.5 62Z",
           ]}
-          fill={C.egg}
-          edge={C.eggDark}
+          fill="#fbf4e4"
+          edge="#c49a5c"
           w={2}
         />
+        <path d="M108 45q4.5 1.5 8.5 0M120 43q4.5 1.5 8.5 0M136.5 60q4 1.2 7.5 0" fill="none" stroke="#d9b98a" strokeWidth={1.4} strokeLinecap="round" />
         <g fill={C.yellowDark} opacity={0.45}>
           <circle cx={58} cy={68} r={6} />
           <circle cx={78} cy={64} r={4.5} />
@@ -609,8 +614,9 @@ function Trike() {
       </g>
       <Glow d={ell(64, 70, 28, 8)} opacity={0.25} />
       <Eye x={124} y={60} r={4.6} />
-      <Cheek x={131} y={73} r={5.5} />
-      <Line d="M134 79q5 4 10 0" w={2} />
+      <Cheek x={128} y={72} r={5} />
+      <circle cx={146.5} cy={66} r={1.5} fill={C.ink} />
+      <Line d="M135 76.5q5 3.5 10.5-0.5" w={2} />
     </g>
   );
 }

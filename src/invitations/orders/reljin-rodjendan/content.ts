@@ -44,7 +44,8 @@ const content: InvitationContent = {
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do Reljine dino žurke je ostalo još",
   music: "/muzika/mali-paradajz.m4a",
-  closing: "Jedva čekamo da zajedno rikamo, slavimo i jedemo tortu!",
+  closing:
+    "Jedva čekamo da zajedno stvaramo nove uspomene! Vidimo se na našoj maloj dino avanturi! 🦕💚",
   signature: "Relja sa mamom, tatom i batom",
 };
 

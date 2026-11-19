@@ -4,17 +4,31 @@ const content: InvitationContent = {
   slug: "rodjendan-dino",
   category: "Rođendan",
   templateName: "Dino",
-  description: "Akvarel dinosaurusi, lišće džungle i šarene zastavice, za dečji rođendan u dino fazonu.",
+  description:
+    "Akvarel dinosaurusi, lišće džungle i šarene zastavice, za dečji rođendan u dino fazonu.",
   names: "Luka",
   subtitle: "Lukin drugi rođendan",
   age: 2,
   date: "2027-05-15T17:00:00+02:00",
   end: "2027-05-15T20:00:00+02:00",
-  intro: "Dino avantura počinje! Jelena i Nikola vas pozivaju da zajedno proslavimo Lukin drugi rođendan, uz tortu, igru i mnogo rikanja.",
+  intro:
+    "Dino avantura počinje! Jelena i Nikola vas pozivaju da zajedno proslavimo Lukin drugi rođendan, uz tortu, igru i mnogo rikanja.",
   eventsTitle: "Gde i kada",
   events: [
-    { icon: "balon", title: "Dino žurka", time: "17:00h", place: "Igraonica Džungla", address: "Novi Beograd" },
-    { icon: "torta", title: "Torta i pesma", time: "18:30h", place: "Igraonica Džungla", address: "Novi Beograd" },
+    {
+      icon: "balon",
+      title: "Dino žurka",
+      time: "17:00h",
+      place: "Igraonica Džungla",
+      address: "Novi Beograd",
+    },
+    {
+      icon: "torta",
+      title: "Torta i pesma",
+      time: "18:30h",
+      place: "Igraonica Džungla",
+      address: "Novi Beograd",
+    },
   ],
   notes: ["Parking je besplatan"],
   rsvpNote: "Molimo vas da dolazak potvrdite do 5. maja pozivom ili porukom:",
@@ -24,7 +38,8 @@ const content: InvitationContent = {
   ],
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do Lukine dino žurke je ostalo još",
-  closing: "Jedva čekamo da zajedno rikamo, slavimo i jedemo tortu!",
+  closing:
+    "Jedva čekamo da zajedno stvaramo nove uspomene! Vidimo se na našoj maloj dino avanturi! 🦕💚",
   signature: "Luka, mama Jelena i tata Nikola",
 };
 
