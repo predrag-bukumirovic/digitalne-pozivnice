@@ -70,9 +70,12 @@
   position: absolute;
   z-index: 2;
   top: 0;
-  left: 50%;
+  /* Full width, tiles centered and spilling over both sides. Not "left: 50% + translate":
+     Safari sizes that box to half the screen and the garland starts a quarter in. */
+  left: 0;
+  right: 0;
   display: flex;
-  translate: -50% 0;
+  justify-content: center;
   pointer-events: none;
 }
 
