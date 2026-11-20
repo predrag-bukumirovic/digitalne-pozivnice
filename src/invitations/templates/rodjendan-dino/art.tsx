@@ -814,6 +814,10 @@ const FOLIAGE: [
   string,
   string,
 ][] = [
+  // Both ends: fronds hanging almost straight down over the edge, so the corners and the seams
+  // between tiles (on phones exactly the screen edges) are never bare.
+  [-4, "frond", 94, 104, C.leafDark, C.leafDark],
+  [604, "frond", 86, 104, C.leaf, C.leafDark],
   [8, "frond", 72, 116, C.leaf, C.leafDark],
   [52, "leaf", 104, 96, C.leaf, C.leafDark],
   [92, "spikes", 92, 56, C.yellow, C.yellowDark],
