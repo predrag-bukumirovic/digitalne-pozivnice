@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { longDate } from "@/invitations/date";
-import content from "@/invitations/orders/reljin-rodjendan/content";
-import photo from "@/invitations/orders/reljin-rodjendan/relja.jpg";
+import content from "@/invitations/orders/reljin-drugi-rodjendan/content";
+import photo from "@/invitations/orders/reljin-drugi-rodjendan/relja.jpg";
 import Template from "@/invitations/templates/rodjendan-dino/Template";
 
 const title = content.subtitle ?? content.names;
