@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
 import CtaBand from "@/components/CtaBand";
 import PageHeader from "@/components/PageHeader";
 import prose from "@/components/Prose.module.css";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "O nama",
-  description: "JustSend pravi digitalne pozivnice za venčanja, krštenja, rođendane i poslovne događaje.",
-};
+  description:
+    "JustSend pravi digitalne pozivnice za venčanja, krštenja, rođendane i poslovne događaje. Svaku pozivnicu pripremamo ručno i proveravamo na telefonu.",
+  path: "/o-nama",
+});
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "O nama", path: "/o-nama" }])} />
       <PageHeader eyebrow="O nama" title="Pozivnica je prvi utisak o vašoj proslavi" />
       <article className={`container ${prose.prose}`}>
         <p>

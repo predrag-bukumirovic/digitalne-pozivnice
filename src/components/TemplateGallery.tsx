@@ -19,7 +19,7 @@ export default function TemplateGallery({ category }: { category: string }) {
         {filters.map((filter) => (
           <Link
             key={filter.slug}
-            href={filter.slug ? `/sabloni?kategorija=${filter.slug}` : "/sabloni"}
+            href={filter.slug ? `/sabloni/${filter.slug}` : "/sabloni"}
             scroll={false}
             className={styles.filter}
             aria-current={filter.slug === category ? "page" : undefined}

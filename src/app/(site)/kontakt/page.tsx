@@ -1,15 +1,18 @@
-import type { Metadata } from "next";
 import OrderForm from "@/components/OrderForm";
 import PageHeader from "@/components/PageHeader";
 import { MailIcon, PhoneIcon } from "@/components/icons";
 import { catalog } from "@/invitations/catalog";
 import { site } from "@/lib/site";
 import styles from "./page.module.css";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Poručite pozivnicu",
-  description: "Pošaljite porudžbinu za digitalnu pozivnicu. Javljamo vam se u roku od 24 sata.",
-};
+export const metadata = pageMetadata({
+  title: "Poručite digitalnu pozivnicu",
+  description:
+    "Poručite digitalnu pozivnicu za venčanje, krštenje ili rođendan. Pošaljite podatke preko forme, a mi vam se javljamo u roku od 24 sata.",
+  path: "/kontakt",
+});
 
 export default async function ContactPage({ searchParams }: PageProps<"/kontakt">) {
   const params = await searchParams;
@@ -20,6 +23,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/kontakt"
 
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "Kontakt", path: "/kontakt" }])} />
       <PageHeader eyebrow="Kontakt" title="Poručite svoju pozivnicu">
         Popunite formu i javićemo vam se u roku od 24 sata. Plaćanje sledi tek kada odobrite pozivnicu.
       </PageHeader>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Pricing.module.css";
 
-const tiers = [
+export const tiers = [
   {
     id: "sablon",
     name: "Šablon",

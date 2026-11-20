@@ -1,18 +1,22 @@
-import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import prose from "@/components/Prose.module.css";
 import { site } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Politika privatnosti",
-  description: "Kako JustSend prikuplja, koristi i čuva podatke o ličnosti.",
-};
+  description:
+    "Kako JustSend prikuplja, koristi i čuva podatke o ličnosti.",
+  path: "/politika-privatnosti",
+});
 
 export default function PrivacyPage() {
   const owner = site.company.name || site.name;
 
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "Politika privatnosti", path: "/politika-privatnosti" }])} />
       <PageHeader eyebrow="Pravne informacije" title="Politika privatnosti" />
       <article className={`container ${prose.prose}`}>
         <p className={prose.note}>Poslednja izmena: oktobar 2026.</p>

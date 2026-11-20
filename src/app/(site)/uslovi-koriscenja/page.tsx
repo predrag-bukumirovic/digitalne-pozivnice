@@ -1,19 +1,23 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import prose from "@/components/Prose.module.css";
 import { site } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Uslovi korišćenja",
-  description: "Uslovi poručivanja i korišćenja digitalnih pozivnica JustSend.",
-};
+  description:
+    "Uslovi poručivanja i korišćenja digitalnih pozivnica JustSend.",
+  path: "/uslovi-koriscenja",
+});
 
 export default function TermsPage() {
   const { company } = site;
 
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "Uslovi korišćenja", path: "/uslovi-koriscenja" }])} />
       <PageHeader eyebrow="Pravne informacije" title="Uslovi korišćenja" />
       <article className={`container ${prose.prose}`}>
         <p className={prose.note}>Poslednja izmena: oktobar 2026.</p>

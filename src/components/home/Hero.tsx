@@ -44,9 +44,9 @@ export default function Hero() {
         delay={0.25}
         className={`${s.serif} ${s.upper} ${s.light} ${s.heroTitle}`}
       >
-        Digitalne
+        Digitalne{" "}
         <br />
-        pozivnice za vaše
+        pozivnice za vaše{" "}
         <br />
         najlepše trenutke
       </El>

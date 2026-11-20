@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/seo";
 import { googleCalendarUrl } from "../calendar";
+import { categoryByLabel } from "../categories";
 import type { InvitationContent } from "../types";
 import Calendar from "./Calendar";
 import Contacts from "./Contacts";
@@ -36,13 +39,24 @@ export default function ModernInvitation({
   intro?: ReactNode;
 }) {
   const orderHref = `/kontakt?sablon=${content.slug}`;
+  const category = categoryByLabel(content.category);
+  const galleryHref = category ? `/sabloni/${category.slug}` : "/sabloni";
 
   return (
     <div className={`${styles.page} ${music ? styles.withMusic : ""} ${className}`}>
       {intro}
+      {demo && category && (
+        <JsonLd
+          data={breadcrumbLd([
+            { name: "Šabloni", path: "/sabloni" },
+            { name: category.page.heading, path: galleryHref },
+            { name: `Šablon ${content.templateName}`, path: `/primer/${content.slug}` },
+          ])}
+        />
+      )}
       {demo && (
         <nav className={styles.demoBar} aria-label="Primer pozivnice">
-          <Link href="/sabloni" className={styles.demoLink}>
+          <Link href={galleryHref} className={styles.demoLink}>
             ← Šabloni
           </Link>
           <Link href={orderHref} className={`${styles.demoLink} ${styles.demoOrder}`}>

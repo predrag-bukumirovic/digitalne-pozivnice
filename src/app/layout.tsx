@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Cormorant, Inter, Montserrat, Ms_Madi, Poppins } from "next/font/google";
+import { defaultImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -43,10 +44,17 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: `${site.name} – Digitalne pozivnice`, template: `%s | ${site.name}` },
-  openGraph: { siteName: site.name, locale: "sr_RS", type: "website" },
   description:
     "Digitalne pozivnice za venčanja, krštenja, rođendane, proslave beba i poslovne događaje. Izaberite dizajn, a mi pripremamo pozivnicu koju šaljete jednim linkom.",
+  applicationName: site.name,
+  // Phone numbers on the pages are real links already; stop iOS from styling every number.
+  formatDetection: { telephone: false, email: false, address: false },
+  openGraph: { siteName: site.name, locale: "sr_RS", type: "website", images: [defaultImage] },
+  twitter: { card: "summary_large_image" },
+  ...(process.env.GOOGLE_SITE_VERIFICATION ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } } : {}),
 };
+
+export const viewport: Viewport = { themeColor: "#63111c" };
 
 const fonts = [serif, archivo, poppins, script, montserrat, inter].map((font) => font.variable).join(" ");
 

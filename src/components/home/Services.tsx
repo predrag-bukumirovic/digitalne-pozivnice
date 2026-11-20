@@ -30,7 +30,7 @@ const folders: Folder[] = [
       "Elegantna pozivnica za vaš najvažniji dan. Gosti otvaraju link i odmah vide satnicu, mapu do crkve i sale i odbrojavanje do venčanja. Cena 3.990 RSD, plaćate jednom.",
     ],
     includes: ["Satnica crkve, opštine i sale", "Mapa do svake lokacije", "Kalendar i odbrojavanje", "Dva kontakta za potvrdu dolaska"],
-    cta: { label: "Pogledajte šablone", href: "/sabloni?kategorija=vencanje" },
+    cta: { label: "Pogledajte šablone", href: "/sabloni/vencanje" },
     slug: "vencanje-monogram",
     polaroid: [
       [191, 239, 268, 407, 4],
@@ -49,7 +49,7 @@ const folders: Folder[] = [
       "Ime deteta, crkva i restoran sa mapom, kalendar i brojevi za potvrdu dolaska, sve na jednom linku. Cena 3.990 RSD.",
     ],
     includes: ["Ime deteta i datum krštenja", "Crkva i restoran sa mapom", "Odbrojavanje do proslave", "Potvrda dolaska jednim pozivom"],
-    cta: { label: "Pogledajte šablone", href: "/sabloni?kategorija=krstenje" },
+    cta: { label: "Pogledajte šablone", href: "/sabloni/krstenje" },
     slug: "krstenje",
     polaroid: [
       [180, 246, 268, 407, -3],
@@ -68,7 +68,7 @@ const folders: Folder[] = [
       "Za prvi, osamnaesti ili pedeseti rođendan: pozivnica koja nosi raspoloženje žurke, i sa fotografijom slavljenika. Cena 3.990 RSD.",
     ],
     includes: ["Fotografija slavljenika", "Adresa i mapa do igraonice ili restorana", "Odbrojavanje do žurke", "Potvrda dolaska"],
-    cta: { label: "Pogledajte šablone", href: "/sabloni?kategorija=rodjendan" },
+    cta: { label: "Pogledajte šablone", href: "/sabloni/rodjendan" },
     slug: "rodjendan-konfete",
     polaroid: [
       [191, 239, 268, 407, 4],

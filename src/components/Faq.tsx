@@ -5,13 +5,13 @@ import { faqs } from "@/lib/faq";
 import styles from "./Faq.module.css";
 
 /** One answer open at a time: opening a question closes the previous one, both animated. */
-export default function Faq({ limit }: { limit?: number }) {
+export default function Faq({ limit, items = faqs }: { limit?: number; items?: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
   const id = useId();
 
   return (
     <div className={styles.list}>
-      {faqs.slice(0, limit).map((item, i) => {
+      {items.slice(0, limit).map((item, i) => {
         const isOpen = open === i;
         return (
           <div key={item.q} className={`${styles.item} ${isOpen ? styles.open : ""}`}>
