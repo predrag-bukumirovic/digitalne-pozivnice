@@ -81,16 +81,35 @@
   opacity: 0.8;
 }
 
-.giant {
-  color: #fff;
-  line-height: 1.2;
-  white-space: nowrap;
+/* The logo opens the row on desktop and sits centered above the columns on phones. */
+.logo {
+  display: flex;
+  justify-content: center;
+  color: var(--color-cream);
 }
 
+.logoMark {
+  height: 100%;
+}
+
+/* Copyright on the left, who built the site on the right; on narrow phones they wrap into two lines. */
 .credit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: calc(4 * var(--u)) calc(16 * var(--u));
   color: #fff;
   font-family: var(--font-small);
-  text-align: right;
+}
+
+/* The site gives paragraphs a dark ink; here they stay white like the rest of the footer. */
+.credit p {
+  color: inherit;
+}
+
+.maker {
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
 
 @media (max-width: 767px) {
@@ -111,6 +130,7 @@
   }
 
   .credit {
+    justify-content: center;
     text-align: center;
   }
 }

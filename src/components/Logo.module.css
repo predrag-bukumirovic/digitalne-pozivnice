@@ -1,0 +1,8 @@
+/* Size it with a height; the width follows the logo's proportions (726 × 458). */
+.logo {
+  display: block;
+  aspect-ratio: 726 / 458;
+  background: currentColor;
+  -webkit-mask: url("/logo.svg") center / contain no-repeat;
+  mask: url("/logo.svg") center / contain no-repeat;
+}

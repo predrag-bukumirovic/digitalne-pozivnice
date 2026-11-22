@@ -1,11 +1,9 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
-import { INVITATION_OPEN } from "@/invitations/modern/events";
+import type { CSSProperties, ReactNode } from "react";
+import { useEnvelope } from "@/invitations/modern/useEnvelope";
 import s from "./envelope.module.css";
-
-type Stage = "closed" | "hatching" | "opening" | "leaving" | "gone";
 
 const LETTER_COLORS = ["#5a9e3c", "#f08c3e", "#3fa69a", "#e5a92e"];
 const PAINT = ["#6aa84f", "#f08c3e", "#5fb8a8", "#f3bf4f", "#a9d26f"];
@@ -40,8 +38,6 @@ const DOTS: [number, number, number][] = [
   [70, 16, -55],
 ];
 
-const TIMING = { hatch: 2300, open: 2900, leave: 900 };
-
 /**
  * The invitation arrives in an envelope sealed with a dinosaur egg. A tap on the egg hatches it:
  * the child's photo pops out, the flap opens, the card slides out, and the page fades into the
@@ -65,42 +61,7 @@ export default function Envelope({
   baby: ReactNode;
   leaves: [ReactNode, ReactNode];
 }) {
-  const [stage, setStage] = useState<Stage>("closed");
-  const timers = useRef<number[]>([]);
-  const visible = stage !== "gone";
-
-  useEffect(() => {
-    const pending = timers.current;
-    return () => pending.forEach((id) => window.clearTimeout(id));
-  }, []);
-
-  // The page behind stays put until the envelope is gone.
-  useEffect(() => {
-    if (!visible) return;
-    const root = document.documentElement;
-    const previous = root.style.overflow;
-    root.style.overflow = "hidden";
-    return () => {
-      root.style.overflow = previous;
-    };
-  }, [visible]);
-
-  const later = (fn: () => void, ms: number) => timers.current.push(window.setTimeout(fn, ms));
-
-  const open = () => {
-    if (stage !== "closed") return;
-    // Still inside the guest's tap, so the browser lets the music start.
-    window.dispatchEvent(new Event(INVITATION_OPEN));
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setStage("leaving");
-      later(() => setStage("gone"), TIMING.leave);
-      return;
-    }
-    setStage("hatching");
-    later(() => setStage("opening"), TIMING.hatch);
-    later(() => setStage("leaving"), TIMING.hatch + TIMING.open);
-    later(() => setStage("gone"), TIMING.hatch + TIMING.open + TIMING.leave);
-  };
+  const { stage, visible, open } = useEnvelope();
 
   if (!visible) return null;
 

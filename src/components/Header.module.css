@@ -30,16 +30,14 @@
   translate: 0 -50%;
 }
 
-.icons a,
-.panelIcons a {
+.icons a {
   display: block;
   width: calc(20 * var(--u));
   color: var(--color-blush);
   transition: color 0.5s ease;
 }
 
-.icons a:hover,
-.panelIcons a:hover {
+.icons a:hover {
   color: var(--color-pink);
 }
 
@@ -88,13 +86,12 @@
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  font-family: var(--font-display);
-  font-size: calc(32 * var(--u));
-  font-weight: 500;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
+  color: var(--color-cream);
   animation: fadeIn 1s both;
+}
+
+.logo {
+  height: calc(46 * var(--u));
 }
 
 .menuButton {
@@ -131,43 +128,77 @@
   .brand {
     left: calc(23 * var(--u));
     translate: 0 -50%;
-    font-size: calc(19 * var(--u));
+  }
+
+  .logo {
+    height: calc(36 * var(--u));
   }
 
   .menuButton {
     display: block;
   }
 
-  /* Wine panel that slides down from the top. */
-  .panel {
+  /* Drawer from the right over a dimmed page; it slides back out when closed. */
+  .drawer {
     position: fixed;
-    inset: 0 0 auto;
-    display: block;
-    height: calc(403 * var(--u));
-    border-radius: 0 0 calc(25 * var(--u)) calc(25 * var(--u));
+    inset: 0;
+    z-index: 60;
+  }
+
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(30, 6, 10, 0.45);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    animation: backdropIn 0.35s ease both;
+  }
+
+  .panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    width: min(calc(272 * var(--u)), 380px);
+    padding: calc(14 * var(--u)) calc(22 * var(--u)) calc(24 * var(--u));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: calc(24 * var(--u)) 0 0 calc(24 * var(--u));
     background: var(--color-wine);
-    box-shadow: rgba(238, 216, 216, 0.1) 0 0 63px;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.28);
     color: #fff;
-    animation: slideInDown 0.5s both;
+    animation: drawerIn 0.45s cubic-bezier(0.22, 0.8, 0.24, 1) both;
+  }
+
+  .closing .backdrop {
+    animation: backdropOut 0.3s ease both;
+  }
+
+  .closing .panel {
+    animation: drawerOut 0.3s cubic-bezier(0.5, 0, 0.75, 0) both;
+  }
+
+  .panelTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: calc(14 * var(--u));
+    border-bottom: 1.5px solid rgba(228, 165, 184, 0.35);
   }
 
   .panelBrand {
-    position: absolute;
-    left: calc(18 * var(--u));
-    top: calc(16 * var(--u));
-    font-family: var(--font-display);
-    font-size: calc(26 * var(--u));
-    font-weight: 500;
-    line-height: 1;
-    text-transform: uppercase;
+    color: var(--color-cream);
+  }
+
+  .panelLogo {
+    height: calc(40 * var(--u));
   }
 
   .close {
-    position: absolute;
-    right: calc(13 * var(--u));
-    top: calc(14 * var(--u));
-    width: calc(24 * var(--u));
-    height: calc(24 * var(--u));
+    width: calc(26 * var(--u));
+    height: calc(26 * var(--u));
     padding: 0;
     border: 0;
     background: none;
@@ -175,31 +206,33 @@
     cursor: pointer;
   }
 
-  .panelLine {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(61 * var(--u));
-    height: 2px;
-    background: var(--color-line);
-  }
-
   .panelLinks {
-    position: absolute;
-    left: calc(90 * var(--u));
-    top: calc(90 * var(--u));
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: calc(141 * var(--u));
+    margin-top: calc(14 * var(--u));
   }
 
   .panelLinks a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(9 * var(--u)) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     font-family: var(--font-display);
-    font-size: calc(20 * var(--u));
+    font-size: calc(25 * var(--u));
     font-weight: 500;
-    line-height: calc(31 * var(--u));
-    transition: color 0.5s ease;
+    line-height: 1.1;
+    opacity: 0;
+    animation: linkIn 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+    transition: color 0.3s ease;
+  }
+
+  .panelLinks a::after {
+    content: "→";
+    color: var(--color-pink);
+    font-family: var(--font-body);
+    font-size: calc(14 * var(--u));
+    opacity: 0.6;
   }
 
   .panelLinks a:hover,
@@ -207,20 +240,89 @@
     color: var(--color-pink);
   }
 
-  .panelIcons {
-    position: absolute;
-    left: calc(140 * var(--u));
-    top: calc(355 * var(--u));
+  .panelLinks a[aria-current="page"]::after {
+    opacity: 1;
+  }
+
+  .panelFoot {
     display: flex;
+    flex-direction: column;
     gap: calc(10 * var(--u));
+    margin-top: auto;
+    padding-top: calc(22 * var(--u));
+  }
+
+  .panelCta {
+    display: flex;
+    justify-content: center;
+    margin-bottom: calc(6 * var(--u));
+    padding: calc(13 * var(--u));
+    border-radius: 999px;
+    background: var(--color-pink);
+    color: var(--color-wine);
+    /* Poppins 500 is loaded; Montserrat only comes in 400 and would look thin here. */
+    font-family: var(--font-body);
+    font-size: calc(11 * var(--u));
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .panelContact {
+    display: flex;
+    align-items: center;
+    gap: calc(10 * var(--u));
+    color: var(--color-blush);
+    font-size: calc(12 * var(--u));
+  }
+
+  .panelContact svg {
+    flex: none;
+    width: calc(16 * var(--u));
+    height: calc(16 * var(--u));
   }
 }
 
-@keyframes slideInDown {
+@keyframes drawerIn {
   from {
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes drawerOut {
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes backdropOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes linkIn {
+  from {
+    opacity: 0;
+    translate: calc(24 * var(--u)) 0;
   }
   to {
-    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .panel,
+  .panelLinks a {
+    animation: none;
+    opacity: 1;
   }
 }

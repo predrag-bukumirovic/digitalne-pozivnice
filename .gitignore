@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Full-length original of the melody; only the 26 s cut (mali-paradajz.m4a) is published.
 public/muzika/maliparadajiz.mpeg
+
+# Marketing materials (Instagram posts); not part of the site
+/objave/

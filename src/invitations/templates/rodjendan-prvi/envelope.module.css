@@ -1,0 +1,550 @@
+/*
+ * Opening envelope in the striped first-birthday look. Stages (class on .overlay):
+ * closed → hatching (the "1" seal pops, confetti, photo comes out) → opening (photo rises, flap
+ * opens, card slides out) → leaving (card zooms, everything fades into the invitation).
+ * Sizes follow --W, the envelope width.
+ */
+
+.overlay {
+  --s: min(3.4vw, 24px);
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  container-type: inline-size;
+  background: repeating-linear-gradient(
+    90deg,
+    #fbf3d6 0 var(--s),
+    #1f8f4e var(--s) calc(var(--s) * 2),
+    #fbf3d6 calc(var(--s) * 2) calc(var(--s) * 3),
+    #f6b21a calc(var(--s) * 3) calc(var(--s) * 4),
+    #fbf3d6 calc(var(--s) * 4) calc(var(--s) * 5),
+    #2457c5 calc(var(--s) * 5) calc(var(--s) * 6),
+    #fbf3d6 calc(var(--s) * 6) calc(var(--s) * 7),
+    #e03a3e calc(var(--s) * 7) calc(var(--s) * 8)
+  );
+  color: #2a2350;
+  font-family: var(--inv-display);
+  text-align: center;
+}
+
+.decor {
+  position: absolute;
+  z-index: 0;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Photo above + title + envelope + hint, centered as one group, on a white scalloped panel. */
+.stage {
+  --W: min(78vw, 380px, 50svh);
+  position: relative;
+  z-index: 1;
+  width: var(--W);
+  margin-top: calc(var(--W) * 0.42);
+}
+
+.panel {
+  position: absolute;
+  top: calc(var(--W) * -0.1);
+  right: calc(var(--W) * -0.13);
+  bottom: calc(var(--W) * -0.12);
+  left: calc(var(--W) * -0.13);
+  filter: drop-shadow(0 calc(var(--W) * 0.02) calc(var(--W) * 0.03) rgba(42, 35, 80, 0.18));
+  transition: opacity 0.5s ease;
+}
+
+.panelShape {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.title,
+.envelope,
+.hint {
+  position: relative;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: calc(var(--W) * 0.42);
+  padding-bottom: calc(var(--W) * 0.1);
+  transition: opacity 0.4s ease;
+}
+
+.invited {
+  font-size: calc(var(--W) * 0.15);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  rotate: -3deg;
+}
+
+.from {
+  max-width: 92%;
+  margin-top: calc(var(--W) * 0.03);
+  color: #2a2350;
+  font-size: calc(var(--W) * 0.056);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ---------- Envelope ---------- */
+
+.envelope {
+  width: 100%;
+  aspect-ratio: 100 / 68;
+  perspective: 1000px;
+  cursor: pointer;
+  filter: drop-shadow(0 calc(var(--W) * 0.02) calc(var(--W) * 0.025) rgba(42, 35, 80, 0.2));
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.back {
+  z-index: 1;
+}
+
+.flap {
+  z-index: 5;
+  transform-origin: 50% 0;
+  backface-visibility: visible;
+}
+
+.pocket {
+  z-index: 4;
+}
+
+.address {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: 11%;
+  left: 0;
+  color: #2457c5;
+  font-size: calc(var(--W) * 0.045);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+/* ---------- Card inside ---------- */
+
+.card {
+  --cs: calc(var(--W) * 0.022);
+  position: absolute;
+  z-index: 3;
+  top: 5%;
+  left: 6%;
+  right: 6%;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border-radius: calc(var(--W) * 0.025);
+  background: #fffaf0;
+  box-shadow: 0 1px 6px rgba(42, 35, 80, 0.15);
+}
+
+.cardStripes {
+  flex: none;
+  width: 100%;
+  height: 9%;
+  background: repeating-linear-gradient(
+    90deg,
+    #fbf3d6 0 var(--cs),
+    #1f8f4e var(--cs) calc(var(--cs) * 2),
+    #fbf3d6 calc(var(--cs) * 2) calc(var(--cs) * 3),
+    #f6b21a calc(var(--cs) * 3) calc(var(--cs) * 4),
+    #fbf3d6 calc(var(--cs) * 4) calc(var(--cs) * 5),
+    #2457c5 calc(var(--cs) * 5) calc(var(--cs) * 6),
+    #fbf3d6 calc(var(--cs) * 6) calc(var(--cs) * 7),
+    #e03a3e calc(var(--cs) * 7) calc(var(--cs) * 8)
+  );
+}
+
+.cardFun {
+  margin-top: 6%;
+  background-image: linear-gradient(90deg, #e03a3e, #f2792b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: calc(var(--W) * 0.075);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.cardName {
+  font-size: calc(var(--W) * 0.13);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.cardAge {
+  margin-top: 4%;
+  padding: 0.05em 0.7em;
+  border-radius: 45% 35% 40% 30% / 60% 50% 60% 50%;
+  background: #f7c531;
+  color: #2f5bd3;
+  font-size: calc(var(--W) * 0.055);
+  font-weight: 800;
+  text-transform: uppercase;
+  rotate: -3deg;
+}
+
+/* ---------- Seal ---------- */
+
+.seal {
+  position: absolute;
+  z-index: 6;
+  top: 57%;
+  left: 50%;
+  width: 25%;
+  aspect-ratio: 1;
+  translate: -50% -55%;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.seal:focus {
+  outline: none;
+}
+
+/* Keyboard users still see where they are. */
+.seal:focus-visible {
+  outline: 3px dashed #e03a3e;
+  outline-offset: 6px;
+}
+
+.sealArt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sealNumber {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-bottom: 4%;
+  color: #fff;
+  font-family: var(--inv-display);
+  font-size: calc(var(--W) * 0.15);
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(42, 35, 80, 0.2);
+}
+
+.seal::before {
+  content: "";
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(224, 58, 62, 0.5);
+  animation: glow 2s ease-out infinite;
+}
+
+.closed .seal {
+  animation: sealIdle 2.4s ease-in-out infinite;
+}
+
+@keyframes sealIdle {
+  0%,
+  70%,
+  100% {
+    rotate: 0deg;
+    scale: 1;
+  }
+  76% {
+    rotate: -10deg;
+    scale: 1.06;
+  }
+  82% {
+    rotate: 9deg;
+  }
+  88% {
+    rotate: -5deg;
+  }
+  94% {
+    rotate: 3deg;
+    scale: 1;
+  }
+}
+
+@keyframes glow {
+  to {
+    box-shadow: 0 0 0 calc(var(--W) * 0.06) rgba(224, 58, 62, 0);
+  }
+}
+
+.hint {
+  margin-top: calc(var(--W) * 0.08);
+  color: #e03a3e;
+  font-size: calc(var(--W) * 0.06);
+  font-weight: 800;
+  animation: bob 1.4s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes bob {
+  50% {
+    translate: 0 -4px;
+  }
+}
+
+/* ---------- Photo ---------- */
+
+.photo {
+  position: absolute;
+  z-index: 7;
+  top: calc(var(--W) * -0.47);
+  left: 50%;
+  width: calc(var(--W) * 0.44);
+  aspect-ratio: 1;
+  margin-left: calc(var(--W) * -0.22);
+  overflow: hidden;
+  border: calc(var(--W) * 0.016) solid #fff;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 0 calc(var(--W) * 0.012) #e03a3e,
+    0 0 0 calc(var(--W) * 0.024) #f6b21a,
+    0 calc(var(--W) * 0.03) calc(var(--W) * 0.05) rgba(42, 35, 80, 0.25);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The photo is a cut-out on white: kept a little smaller than the circle so the hat isn't clipped. */
+.photoInner {
+  position: absolute;
+  inset: 8%;
+}
+
+.photoImg {
+  object-fit: contain;
+}
+
+.burst span {
+  position: absolute;
+  z-index: 6;
+  top: 57%;
+  left: 50%;
+  width: calc(var(--W) * 0.024);
+  height: calc(var(--W) * 0.024);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.burst .star {
+  width: calc(var(--W) * 0.05);
+  height: calc(var(--W) * 0.05);
+  border-radius: 0;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* ---------- Seal pops ---------- */
+
+.hatching .title,
+.opening .title,
+.leaving .title,
+.hatching .hint,
+.opening .hint,
+.leaving .hint {
+  opacity: 0;
+}
+
+.hatching .seal,
+.opening .seal,
+.leaving .seal {
+  pointer-events: none;
+  animation: sealPop 0.9s ease-in-out forwards;
+}
+
+.hatching .seal::before,
+.opening .seal::before,
+.leaving .seal::before {
+  display: none;
+}
+
+@keyframes sealPop {
+  0% {
+    rotate: 0deg;
+    scale: 1;
+  }
+  15% {
+    rotate: -12deg;
+  }
+  30% {
+    rotate: 11deg;
+  }
+  45% {
+    rotate: 0deg;
+    scale: 1.25;
+    opacity: 1;
+  }
+  100% {
+    scale: 0.2;
+    opacity: 0;
+  }
+}
+
+.hatching .burst span,
+.opening .burst span,
+.leaving .burst span {
+  animation: burst 1s 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes burst {
+  0% {
+    translate: -50% -50%;
+    scale: 0.4;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    translate: calc(-50% + var(--dx)) calc(-50% + var(--dy));
+    rotate: var(--r);
+    scale: 1;
+    opacity: 0;
+  }
+}
+
+/* The photo comes out of the seal (1.14 W below its final spot), grows over the envelope … */
+.hatching .photo {
+  animation: photoPop 1.6s 0.5s cubic-bezier(0.3, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes photoPop {
+  0% {
+    translate: 0 calc(var(--W) * 1.14);
+    scale: 0.12;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  55% {
+    translate: 0 calc(var(--W) * 1.02);
+    scale: 1.2;
+  }
+  70%,
+  100% {
+    translate: 0 calc(var(--W) * 1.04);
+    scale: 1.12;
+    opacity: 1;
+  }
+}
+
+/* … then rises to the top while the envelope opens. */
+.opening .photo,
+.leaving .photo {
+  animation: photoUp 1s cubic-bezier(0.45, 0, 0.25, 1) forwards;
+}
+
+@keyframes photoUp {
+  from {
+    translate: 0 calc(var(--W) * 1.04);
+    scale: 1.12;
+    opacity: 1;
+  }
+  to {
+    translate: 0 0;
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+/* ---------- Opening ---------- */
+
+.opening .flap,
+.leaving .flap {
+  animation: flapOpen 0.9s 0.2s ease-in-out forwards;
+}
+
+@keyframes flapOpen {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+  49% {
+    z-index: 5;
+  }
+  50% {
+    z-index: 2;
+  }
+  100% {
+    transform: rotateX(180deg);
+    z-index: 2;
+  }
+}
+
+.opening .card,
+.leaving .card {
+  animation: cardRise 1.4s 0.9s cubic-bezier(0.35, 0, 0.2, 1) forwards;
+}
+
+@keyframes cardRise {
+  to {
+    translate: 0 -72%;
+  }
+}
+
+/* ---------- Leaving ---------- */
+
+.leaving {
+  animation: fadeAway 0.9s ease forwards;
+  pointer-events: none;
+}
+
+.leaving .card {
+  animation: cardZoom 0.9s ease forwards;
+}
+
+@keyframes cardZoom {
+  from {
+    translate: 0 -72%;
+  }
+  to {
+    translate: 0 -72%;
+    scale: 1.35;
+  }
+}
+
+@keyframes fadeAway {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay *,
+  .overlay *::before {
+    animation: none !important;
+  }
+}

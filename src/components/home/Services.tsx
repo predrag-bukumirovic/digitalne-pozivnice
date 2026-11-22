@@ -15,6 +15,7 @@ type Folder = {
   includes?: string[];
   cta: { label: string; href: string };
   slug: string;
+  /** Desktop and phone boxes; on phones it sits inside the folder, under the tabs. */
   polaroid: [Box, Box];
 };
 
@@ -34,7 +35,7 @@ const folders: Folder[] = [
     slug: "vencanje-monogram",
     polaroid: [
       [191, 239, 268, 407, 4],
-      [141, 83, 90, 136, 6],
+      [124, 106, 72, 108, 4],
     ],
   },
   {
@@ -53,7 +54,7 @@ const folders: Folder[] = [
     slug: "krstenje",
     polaroid: [
       [180, 246, 268, 407, -3],
-      [172, 74, 85, 127, -1],
+      [124, 106, 72, 108, -4],
     ],
   },
   {
@@ -72,7 +73,7 @@ const folders: Folder[] = [
     slug: "rodjendan-konfete",
     polaroid: [
       [191, 239, 268, 407, 4],
-      [47, 72, 85, 129, 2],
+      [124, 106, 72, 108, 3],
     ],
   },
   {
@@ -93,7 +94,7 @@ const folders: Folder[] = [
     slug: "vencanje-terakota",
     polaroid: [
       [180, 246, 268, 407, -3],
-      [63, 85, 83, 115, -4],
+      [124, 106, 72, 108, -3],
     ],
   },
 ];
@@ -116,7 +117,7 @@ export default function Services() {
 
           <Polaroid d={folder.polaroid[0]} m={folder.polaroid[1]} slug={folder.slug} />
 
-          <El d={[514, 282, 472]} m={[44, 232, 233]} className={`${s.column} ${folder.text === "light" ? s.light : s.dark}`}>
+          <El d={[514, 282, 472]} m={[44, 226, 233]} className={`${s.column} ${folder.text === "light" ? s.light : s.dark}`}>
             <h3 data-anim="fadeIn" className={`${s.serif} ${s.upper} ${s.mCenter}`} style={{ fontSize: "calc(var(--title-fs) * var(--u))", width: "100%" }}>
               {folder.title}
             </h3>

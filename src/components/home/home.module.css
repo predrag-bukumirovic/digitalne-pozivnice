@@ -479,7 +479,7 @@
 
   .tab,
   .column {
-    --tab-fs: 7;
+    --tab-fs: 8.5;
     --title-fs: 25;
     --text-fs: 11;
     --list-fs: 10;
@@ -498,6 +498,11 @@
 
   .tab {
     border-radius: calc(16 * var(--u)) calc(16 * var(--u)) 0 0;
+  }
+
+  /* Bigger tab labels need less tracking to fit four across. */
+  .tab .sub {
+    letter-spacing: 0.04em;
   }
 
   .intro::before {

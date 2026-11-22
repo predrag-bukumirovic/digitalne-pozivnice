@@ -3,6 +3,7 @@ import { El, Section, type Box } from "@/components/canvas/Canvas";
 import { Preview } from "@/components/home/art";
 import { ChatGlyph, HeartGlyph, MailGlyph, PhoneGlyph } from "@/components/home/glyphs";
 import { InstagramIcon } from "@/components/icons";
+import Logo from "@/components/Logo";
 import s from "@/components/home/home.module.css";
 import { nav, site } from "@/lib/site";
 import styles from "./Footer.module.css";
@@ -31,7 +32,7 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <Section h={[739, 762]}>
+      <Section h={[530, 772]}>
         {strip.map(({ slug, d, m }) =>
           d ? (
             <El key={slug} d={d} m={m} href={`/primer/${slug}`} label={`Primer: ${slug}`} className={`${s.shot} ${styles.thumb}`}>
@@ -41,13 +42,16 @@ export default function Footer() {
         )}
 
         <El d={[-1200, 253, 3600, 2]} m={[-320, 727, 960, 2]} className={styles.line} decorative />
-        <El d={[-1200, 468, 3600, 2]} m={[-320, 93, 960, 2]} className={styles.line} decorative />
 
-        <El d={[124, 287, 300]} m={[32, 115, 200]} fs={[38, 27]} tag="h2" className={`${s.serif} ${styles.heading}`}>
+        <El d={[124, 290, 190, 120]} m={[-97, 11, 515, 63]} anim="fadeIn" className={styles.logo}>
+          <Logo className={styles.logoMark} />
+        </El>
+
+        <El d={[404, 286, 240]} m={[32, 115, 200]} fs={[38, 27]} tag="h2" className={`${s.serif} ${styles.heading}`}>
           Navigacija
         </El>
         {columns.map((links, i) => (
-          <El key={i} d={[i === 0 ? 124 : 235, 347, 140]} m={[i === 0 ? 32 : 128, 161, 90]} fs={[12, 12]} tag="ul" className={styles.links}>
+          <El key={i} d={[i === 0 ? 404 : 515, 347, 140]} m={[i === 0 ? 32 : 128, 161, 90]} fs={[12, 12]} tag="ul" className={styles.links}>
             {links.map((link) => (
               <li key={link.href}>
                 <Link href={link.href}>{link.label}</Link>
@@ -56,10 +60,10 @@ export default function Footer() {
           </El>
         ))}
 
-        <El d={[528, 286, 300]} m={[32, 248, 200]} fs={[38, 27]} tag="h2" className={`${s.serif} ${styles.heading}`}>
+        <El d={[660, 286, 260]} m={[32, 248, 200]} fs={[38, 27]} tag="h2" className={`${s.serif} ${styles.heading}`}>
           Kontakt
         </El>
-        <El d={[528, 347, 300]} m={[32, 289, 260]} fs={[12, 11]} tag="ul" className={`${styles.links} ${styles.contactLinks}`}>
+        <El d={[660, 347, 260]} m={[32, 289, 260]} fs={[12, 11]} tag="ul" className={`${styles.links} ${styles.contactLinks}`}>
           <li>
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </li>
@@ -78,10 +82,10 @@ export default function Footer() {
           )}
         </El>
 
-        <El d={[861, 286, 300]} m={[34, 376, 200]} fs={[38, 27]} tag="h2" className={`${s.serif} ${styles.heading}`}>
+        <El d={[890, 286, 260]} m={[34, 376, 200]} fs={[38, 27]} tag="h2" className={`${s.serif} ${styles.heading}`}>
           Javite se
         </El>
-        <El d={[861, 345, 170, 25]} m={[34, 417, 130, 22]} className={styles.icons}>
+        <El d={[890, 345, 170, 25]} m={[34, 417, 130, 22]} className={styles.icons}>
           <a href={`mailto:${site.email}`} aria-label="E-mail">
             <MailGlyph />
           </a>
@@ -100,22 +104,26 @@ export default function Footer() {
             </a>
           )}
         </El>
-        <El d={[861, 391, 204, 31]} m={[32, 457, 152, 26]} fs={[14, 11]} href="/kontakt" className={styles.pill}>
+        <El d={[890, 391, 204, 31]} m={[32, 457, 152, 26]} fs={[14, 11]} href="/kontakt" className={styles.pill}>
           Poručite odmah
         </El>
 
-        <El d={[-298, 497, 1796, 153]} m={[-97, 11, 515, 63]} fs={[150, 56]} tag="p" anim="fadeIn" className={`${s.serif} ${s.upper} ${s.center} ${styles.giant}`}>
-          {site.name}
-        </El>
-
-        <El d={[560, 692, 604, 21]} m={[20, 737, 287, 20]} fs={[13, 9]} tag="p" className={styles.credit}>
-          © 2026 {company.name || site.name}
-          {company.pib && ` · PIB ${company.pib}`}
-          {company.mb && ` · MB ${company.mb}`}
-          {" · "}
-          <Link href="/politika-privatnosti">Privatnost</Link>
-          {" · "}
-          <Link href="/uslovi-koriscenja">Uslovi</Link>
+        <El d={[124, 470, 970, 21]} m={[20, 737, 287, 30]} fs={[13, 9]} className={styles.credit}>
+          <p>
+            © 2026 {company.name || site.name}
+            {company.pib && ` · PIB ${company.pib}`}
+            {company.mb && ` · MB ${company.mb}`}
+            {" · "}
+            <Link href="/politika-privatnosti">Privatnost</Link>
+            {" · "}
+            <Link href="/uslovi-koriscenja">Uslovi</Link>
+          </p>
+          <p>
+            Izradio{" "}
+            <a href="https://scaons.com" target="_blank" rel="noopener" className={styles.maker}>
+              SCAONS
+            </a>
+          </p>
         </El>
       </Section>
     </footer>
