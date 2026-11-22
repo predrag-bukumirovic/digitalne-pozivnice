@@ -43,7 +43,7 @@ export default function Footer() {
 
         <El d={[-1200, 253, 3600, 2]} m={[-320, 727, 960, 2]} className={styles.line} decorative />
 
-        <El d={[124, 290, 190, 120]} m={[-97, 11, 515, 63]} anim="fadeIn" className={styles.logo}>
+        <El d={[124, 290, 190, 120]} m={[32, 22, 100, 63]} anim="fadeIn" className={styles.logo}>
           <Logo className={styles.logoMark} />
         </El>
 

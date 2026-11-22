@@ -107,7 +107,7 @@ export default function Services() {
   return (
     <>
       {folders.map((folder, i) => (
-        <Section key={folder.tab} h={[897, 581]} screen sticky className={i === 0 ? s.servicesBg : undefined} label={folder.tab}>
+        <Section key={folder.tab} h={[897, 581]} screen sticky className={`${s.folder} ${i === 0 ? s.servicesBg : ""}`} label={folder.tab}>
           <El d={[folder.tabX[0], 115, 254, 54]} m={[folder.tabX[1], 70, 70, 24]} className={s.tab} style={{ background: folder.color }}>
             <span className={`${s.sub} ${folder.text === "light" ? s.light : s.dark}`} style={{ fontSize: "calc(var(--tab-fs) * var(--u))" }}>
               {folder.tab}

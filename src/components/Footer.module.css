@@ -81,10 +81,9 @@
   opacity: 0.8;
 }
 
-/* The logo opens the row on desktop and sits centered above the columns on phones. */
+/* The logo opens the row on desktop and sits above the columns on phones, both aligned left. */
 .logo {
   display: flex;
-  justify-content: center;
   color: var(--color-cream);
 }
 

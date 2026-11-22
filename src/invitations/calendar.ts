@@ -25,7 +25,7 @@ function foldLine(line: string) {
 const THREE_HOURS = 3 * 60 * 60 * 1000;
 
 /** End of the celebration: the given end time, or three hours after the start. */
-function endOf(content: InvitationContent) {
+export function endOf(content: InvitationContent) {
   return content.end ?? new Date(new Date(content.date).getTime() + THREE_HOURS).toISOString();
 }
 

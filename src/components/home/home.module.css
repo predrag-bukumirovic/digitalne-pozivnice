@@ -500,6 +500,17 @@
     border-radius: calc(16 * var(--u)) calc(16 * var(--u)) 0 0;
   }
 
+  /* Pinned to the top instead of centered: with the browser's bars showing, a phone screen is
+     shorter than the folder, and centering pushed the tabs under the header. */
+  section.folder {
+    align-items: flex-start;
+    /* On short phones (folder content reaches 518 units) the folder first scrolls fully into
+       view, then pins with its bottom on the screen's bottom, so the button is never hidden.
+       Where everything fits, this stays 100svh tall and pinned at the top as before. */
+    height: max(100svh, calc(530 * var(--u)));
+    top: min(0px, calc(100svh - 530 * var(--u)));
+  }
+
   /* Bigger tab labels need less tracking to fit four across. */
   .tab .sub {
     letter-spacing: 0.04em;

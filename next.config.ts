@@ -3,9 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // Relja's invitation was renamed after the first link went out.
-      { source: "/pozivnica/reljin-rodjendan", destination: "/pozivnica/reljin-drugi-rodjendan", permanent: true },
-      { source: "/kalendar/reljin-rodjendan", destination: "/kalendar/reljin-drugi-rodjendan", permanent: true },
       // Old filter links (/sabloni?kategorija=vencanje) now have their own pages.
       {
         source: "/sabloni",

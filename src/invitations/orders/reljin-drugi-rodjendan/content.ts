@@ -1,11 +1,10 @@
 import type { InvitationContent } from "@/invitations/types";
 
-// Porudžbina: Reljin drugi rođendan, šablon Dino. Roditelji: Milica i Predrag.
 const place = "Igraonica Infinity Kids Dorćol";
 const address = "Dunavski kej 19, Beograd";
 
 const content: InvitationContent = {
-  slug: "reljin-drugi-rodjendan",
+  slug: "reljin-drugi-rodjendan-3hz4k",
   category: "Rođendan",
   templateName: "Dino",
   description: "Reljin rođendan",
