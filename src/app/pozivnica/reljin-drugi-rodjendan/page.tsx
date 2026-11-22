@@ -6,8 +6,9 @@ import photo from "@/invitations/orders/reljin-drugi-rodjendan/relja.jpg";
 import Template from "@/invitations/templates/rodjendan-dino/Template";
 
 /*
- * A customer's invitation: shared by link only (the random end of the address can't be guessed),
- * kept out of search engines, and replaced by "Proslava je završena" 30 days after the party.
+ * A customer's invitation: shared by link only, kept out of search engines, and replaced by
+ * "Proslava je završena" 30 days after the party. This one went out before links got a random
+ * code, so its address stays as sent.
  * The photo doubles as the preview picture when the link is sent over Viber or WhatsApp.
  */
 export const revalidate = 3600;
