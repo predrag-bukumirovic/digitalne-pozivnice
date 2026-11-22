@@ -133,6 +133,11 @@
   text-underline-offset: 2px;
 }
 
+/* Focus is moved here after sending (for screen readers); no ring on a plain message. */
+.success:focus {
+  outline: none;
+}
+
 .success {
   display: flex;
   flex-direction: column;

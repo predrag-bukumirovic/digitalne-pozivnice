@@ -4,7 +4,7 @@ const place = "Igraonica Infinity Kids Dorćol";
 const address = "Dunavski kej 19, Beograd";
 
 const content: InvitationContent = {
-  slug: "reljin-drugi-rodjendan-3hz4k",
+  slug: "reljin-drugi-rodjendan",
   category: "Rođendan",
   templateName: "Dino",
   description: "Reljin rođendan",

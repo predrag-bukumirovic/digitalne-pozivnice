@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { sendOrder, type OrderState } from "@/lib/actions";
 import { CheckCircleIcon } from "./icons";
 import styles from "./OrderForm.module.css";
@@ -28,6 +28,16 @@ export default function OrderForm({
   prefill?: { name?: string; phone?: string };
 }) {
   const [state, formAction, pending] = useActionState(sendOrder, initialState);
+  const success = useRef<HTMLDivElement>(null);
+
+  // The long form gives way to a short message; bring it into view (clear of the sticky header)
+  // and move focus there, so screen readers announce it too.
+  useEffect(() => {
+    if (state.status !== "success" || !success.current) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    success.current.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+    success.current.focus({ preventScroll: true });
+  }, [state.status]);
   const values = state.fields ?? {
     package: selectedPackage,
     template: selectedTemplate,
@@ -38,7 +48,7 @@ export default function OrderForm({
 
   if (state.status === "success") {
     return (
-      <div className={styles.success} role="status">
+      <div ref={success} className={styles.success} role="status" tabIndex={-1}>
         <CheckCircleIcon className={styles.successIcon} />
         <h2 className={styles.successTitle}>Porudžbina je poslata</h2>
         <p>{state.message}</p>
