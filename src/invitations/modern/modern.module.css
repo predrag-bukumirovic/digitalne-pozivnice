@@ -454,6 +454,13 @@
   border-radius: var(--inv-radius, 20px);
 }
 
+/* A single host gets one roomier card, lined up like the rest of the section. */
+.contact:only-child {
+  grid-column: 1 / -1;
+  width: min(100%, 300px);
+  margin-inline: var(--inv-mi, 0 auto);
+}
+
 .contactName {
   font-family: var(--inv-display);
   font-size: clamp(1.45rem, 5vw, 1.9rem);

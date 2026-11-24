@@ -1,5 +1,8 @@
 import type { InvitationContent } from "@/invitations/types";
 
+const place = "Restoran Džo";
+const address = "Batajnica";
+
 const content: InvitationContent = {
   slug: "jocin-prvi-rodjendan-74drq",
   category: "Rođendan",
@@ -16,13 +19,23 @@ const content: InvitationContent = {
       icon: "",
       title: "Proslava prvog rođendana",
       time: "17:00h",
-      place: "Restoran DZO",
-      address: "Batajnica",
+      place,
+      address,
+    },
+    {
+      icon: "",
+      title: "Torta i rođendanska pesma",
+      time: "19:30h",
+      place,
+      address,
     },
   ],
   rsvpNote:
-    "Molimo vas da Tijani ili Marku potvrdite dolazak do 25. decembra 2026.",
-  rsvpContacts: [],
+    "Molimo vas da dolazak potvrdite do 25. decembra 2026. pozivom ili porukom:",
+  rsvpContacts: [
+    { name: "Tata Marko", phone: "063 165 4394" },
+    { name: "Mama Tijana", phone: "063 1538 058" },
+  ],
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do Jocinog prvog rođendana je ostalo još",
 };

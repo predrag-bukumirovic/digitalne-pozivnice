@@ -11,7 +11,7 @@ import Template from "@/invitations/templates/rodjendan-prvi/Template";
 export const revalidate = 3600;
 
 const title = "Jocin prvi rođendan";
-const description = "Pozivamo vas na Jocin prvi rođendan, u nedelju 10. januara 2027. u 17h, Restoran DZO, Batajnica.";
+const description = "Pozivamo vas na Jocin prvi rođendan, u nedelju 10. januara 2027. u 17h, Restoran Džo, Batajnica.";
 
 export function generateMetadata() {
   return orderMetadata({ content, photo, title, description });
