@@ -5,10 +5,16 @@ import type { CSSProperties, ReactNode } from "react";
 import { useEnvelope } from "@/invitations/modern/useEnvelope";
 import s from "./envelope.module.css";
 
-const LETTER_COLORS = ["#1f9d55", "#f6c026", "#2f6fe4", "#e03a3e", "#8b4fd8", "#f2792b"];
+const LETTER_COLORS = [
+  "#1f9d55",
+  "#f6c026",
+  "#2f6fe4",
+  "#e03a3e",
+  "#8b4fd8",
+  "#f2792b",
+];
 const PAINT = ["#1f8f4e", "#f6b21a", "#2457c5", "#e03a3e", "#f2792b"];
 
-// Confetti thrown out of the seal: [dx, dy] in envelope widths, and a spin. Every other piece is a star.
 const BURST: [number, number, number][] = [
   [-0.34, -0.22, 120],
   [-0.26, -0.4, -80],
@@ -24,13 +30,26 @@ const BURST: [number, number, number][] = [
   [-0.42, -0.08, 30],
 ];
 
-// Airmail stripes along the envelope's edges, in the template's colors.
-const STRIPES = ["#1f8f4e", "#fbf3d6", "#f6b21a", "#fbf3d6", "#2457c5", "#fbf3d6", "#e03a3e", "#fbf3d6"];
+const STRIPES = [
+  "#1f8f4e",
+  "#fbf3d6",
+  "#f6b21a",
+  "#fbf3d6",
+  "#2457c5",
+  "#fbf3d6",
+  "#e03a3e",
+  "#fbf3d6",
+];
 
-/** `angle` keeps the stripes across the edges they run along: 45° for the pocket, upright for the flap. */
 function Airmail({ id, angle = 45 }: { id: string; angle?: number }) {
   return (
-    <pattern id={id} width={STRIPES.length * 1.1} height="4" patternUnits="userSpaceOnUse" patternTransform={`rotate(${angle})`}>
+    <pattern
+      id={id}
+      width={STRIPES.length * 1.1}
+      height="4"
+      patternUnits="userSpaceOnUse"
+      patternTransform={`rotate(${angle})`}
+    >
       {STRIPES.map((color, i) => (
         <rect key={i} x={i * 1.1} width="1.1" height="4" fill={color} />
       ))}
@@ -38,14 +57,10 @@ function Airmail({ id, angle = 45 }: { id: string; angle?: number }) {
   );
 }
 
-const POCKET = "M0 3Q0 0 2.2 1.6L50 40 97.8 1.6Q100 0 100 3V65Q100 68 97 68H3Q0 68 0 65Z";
+const POCKET =
+  "M0 3Q0 0 2.2 1.6L50 40 97.8 1.6Q100 0 100 3V65Q100 68 97 68H3Q0 68 0 65Z";
 const FLAP = "M0 2.5Q0 0 2.5 0H97.5Q100 0 100 2.5L55 37.6Q50 41.6 45 37.6Z";
 
-/**
- * The invitation arrives in a striped airmail envelope sealed with a big "1". A tap on the seal
- * pops it: confetti flies, the child's photo comes out, the flap opens, the card slides out, and
- * the page fades into the invitation. The tap also starts the music.
- */
 export default function Envelope({
   name,
   from,
@@ -53,25 +68,30 @@ export default function Envelope({
   photo,
   panel,
   decor,
+  topper,
 }: {
   name: string;
-  /** Line under "Imate poziv!", e.g. "Jovan vas zove na svoj prvi rođendan". */
   from: string;
   age?: number;
   photo?: StaticImageData;
-  /** Server-rendered drawings, passed in so the art stays out of the browser bundle. */
   panel: ReactNode;
   decor: ReactNode;
+  topper?: ReactNode;
 }) {
   const { stage, visible, open } = useEnvelope();
 
   if (!visible) return null;
 
   return (
-    <div className={`${s.overlay} ${s[stage]}`} role="dialog" aria-modal="true" aria-label="Koverta sa pozivnicom">
+    <div
+      className={`${s.overlay} ${s[stage]}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Koverta sa pozivnicom"
+    >
       {decor}
 
-      <div className={s.stage}>
+      <div className={`${s.stage} ${topper ? s.tall : ""}`}>
         <div className={s.panel} aria-hidden="true">
           {panel}
         </div>
@@ -79,15 +99,26 @@ export default function Envelope({
         <div className={s.photo} aria-hidden="true">
           {photo && (
             <span className={s.photoInner}>
-              <Image src={photo} alt="" fill sizes="200px" className={s.photoImg} priority />
+              <Image
+                src={photo}
+                alt=""
+                fill
+                sizes="200px"
+                className={s.photoImg}
+                priority
+              />
             </span>
           )}
         </div>
 
         <div className={s.title}>
+          {topper}
           <p className={s.invited}>
             {[..."Imate poziv!"].map((letter, i) => (
-              <span key={i} style={{ color: LETTER_COLORS[i % LETTER_COLORS.length] }}>
+              <span
+                key={i}
+                style={{ color: LETTER_COLORS[i % LETTER_COLORS.length] }}
+              >
                 {letter}
               </span>
             ))}
@@ -96,7 +127,11 @@ export default function Envelope({
         </div>
 
         <div className={s.envelope} onClick={open}>
-          <svg className={`${s.layer} ${s.back}`} viewBox="0 0 100 68" aria-hidden="true">
+          <svg
+            className={`${s.layer} ${s.back}`}
+            viewBox="0 0 100 68"
+            aria-hidden="true"
+          >
             <rect width="100" height="68" rx="3" fill="#2457c5" />
           </svg>
 
@@ -105,7 +140,10 @@ export default function Envelope({
             <p className={s.cardFun}>Žurka!</p>
             <p className={s.cardName}>
               {[...name.toUpperCase()].map((letter, i) => (
-                <span key={i} style={{ color: LETTER_COLORS[i % LETTER_COLORS.length] }}>
+                <span
+                  key={i}
+                  style={{ color: LETTER_COLORS[i % LETTER_COLORS.length] }}
+                >
                   {letter}
                 </span>
               ))}
@@ -113,7 +151,11 @@ export default function Envelope({
             <p className={s.cardAge}>puni {age}!</p>
           </div>
 
-          <svg className={`${s.layer} ${s.pocket}`} viewBox="0 0 100 68" aria-hidden="true">
+          <svg
+            className={`${s.layer} ${s.pocket}`}
+            viewBox="0 0 100 68"
+            aria-hidden="true"
+          >
             <defs>
               <Airmail id="trake-airmail-pocket" />
               <clipPath id="trake-pocket-clip">
@@ -121,14 +163,29 @@ export default function Envelope({
               </clipPath>
             </defs>
             <path d={POCKET} fill="#fbf3d6" />
-            <path d="M0.5 67.5 43 35M99.5 67.5 57 35" stroke="#e8d9a8" strokeWidth="0.5" fill="none" />
-            <path d="M1.3 3V66.7H98.7V3" stroke="url(#trake-airmail-pocket)" strokeWidth="2.6" fill="none" clipPath="url(#trake-pocket-clip)" />
+            <path
+              d="M0.5 67.5 43 35M99.5 67.5 57 35"
+              stroke="#e8d9a8"
+              strokeWidth="0.5"
+              fill="none"
+            />
+            <path
+              d="M1.3 3V66.7H98.7V3"
+              stroke="url(#trake-airmail-pocket)"
+              strokeWidth="2.6"
+              fill="none"
+              clipPath="url(#trake-pocket-clip)"
+            />
           </svg>
           <p className={s.address} aria-hidden="true">
             Za naše drage goste
           </p>
 
-          <svg className={`${s.layer} ${s.flap}`} viewBox="0 0 100 68" aria-hidden="true">
+          <svg
+            className={`${s.layer} ${s.flap}`}
+            viewBox="0 0 100 68"
+            aria-hidden="true"
+          >
             <defs>
               <Airmail id="trake-airmail-flap" angle={0} />
               <clipPath id="trake-flap-clip">
@@ -136,7 +193,13 @@ export default function Envelope({
               </clipPath>
             </defs>
             <path d={FLAP} fill="#f8ecc4" />
-            <path d={FLAP} stroke="url(#trake-airmail-flap)" strokeWidth="5" fill="none" clipPath="url(#trake-flap-clip)" />
+            <path
+              d={FLAP}
+              stroke="url(#trake-airmail-flap)"
+              strokeWidth="5"
+              fill="none"
+              clipPath="url(#trake-flap-clip)"
+            />
           </svg>
 
           <button
@@ -153,13 +216,31 @@ export default function Envelope({
                 <circle cx="50" cy="50" r="42" />
                 {Array.from({ length: 16 }, (_, i) => {
                   const angle = (i / 16) * Math.PI * 2;
-                  return <circle key={i} cx={50 + Math.cos(angle) * 41} cy={50 + Math.sin(angle) * 41} r="8.5" />;
+                  return (
+                    <circle
+                      key={i}
+                      cx={50 + Math.cos(angle) * 41}
+                      cy={50 + Math.sin(angle) * 41}
+                      r="8.5"
+                    />
+                  );
                 })}
               </g>
               <circle cx="50" cy="50" r="36" fill="#e03a3e" />
-              <circle cx="50" cy="50" r="30.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeDasharray="3.2 3.2" opacity="0.8" />
+              <circle
+                cx="50"
+                cy="50"
+                r="30.5"
+                fill="none"
+                stroke="#fff"
+                strokeWidth="1.6"
+                strokeDasharray="3.2 3.2"
+                opacity="0.8"
+              />
             </svg>
-            <span className={s.sealNumber}>{age}</span>
+            <span className={`${s.sealNumber} ${age === 1 ? s.sealOne : ""}`}>
+              {age}
+            </span>
           </button>
 
           <div className={s.burst} aria-hidden="true">

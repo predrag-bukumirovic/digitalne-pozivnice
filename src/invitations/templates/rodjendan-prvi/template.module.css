@@ -256,3 +256,16 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+
+/* "17:00h" keeps its small "h" inside the capitals. */
+.asTyped {
+  text-transform: none;
+}
+
+/* The cake again, above the closing message. */
+.closingArt {
+  display: block;
+  width: min(15rem, 80%);
+  height: auto;
+  margin: 0 auto 1.25rem;
+}

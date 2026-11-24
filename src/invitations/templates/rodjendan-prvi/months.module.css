@@ -1,0 +1,196 @@
+/* "Moja prva godina": a photo per month on the hero's stripes, each in a little white cloud. */
+
+.months {
+  --s: min(3.4vw, 24px);
+  padding: clamp(3.5rem, 10vw, 6rem) 16px clamp(4rem, 11vw, 6.5rem);
+  background: repeating-linear-gradient(
+    90deg,
+    #fbf3d6 0 var(--s),
+    #1f8f4e var(--s) calc(var(--s) * 2),
+    #fbf3d6 calc(var(--s) * 2) calc(var(--s) * 3),
+    #f6b21a calc(var(--s) * 3) calc(var(--s) * 4),
+    #fbf3d6 calc(var(--s) * 4) calc(var(--s) * 5),
+    #2457c5 calc(var(--s) * 5) calc(var(--s) * 6),
+    #fbf3d6 calc(var(--s) * 6) calc(var(--s) * 7),
+    #e03a3e calc(var(--s) * 7) calc(var(--s) * 8)
+  );
+  color: #2a2350;
+  text-align: center;
+}
+
+/*
+ * White cloud with a scalloped edge, like the hero's panel: a rectangle set in by --r, plus a row
+ * of touching circles along every edge ("round" fits a whole number of them to each side).
+ * A mask also cuts away shadows, so the shadow sits on the parent.
+ */
+.cloud {
+  --r: clamp(13px, 3.4vw, 19px);
+  --dot: radial-gradient(closest-side, #000 96%, #0000);
+  --d: calc(var(--r) * 2);
+  margin: 0;
+  background: #fff;
+  -webkit-mask:
+    linear-gradient(#000 0 0) var(--r) var(--r) / calc(100% - var(--d)) calc(100% - var(--d)) no-repeat,
+    var(--dot) 0 0 / var(--d) var(--d) round no-repeat,
+    var(--dot) 0 100% / var(--d) var(--d) round no-repeat,
+    var(--dot) 0 0 / var(--d) var(--d) no-repeat round,
+    var(--dot) 100% 0 / var(--d) var(--d) no-repeat round;
+  mask:
+    linear-gradient(#000 0 0) var(--r) var(--r) / calc(100% - var(--d)) calc(100% - var(--d)) no-repeat,
+    var(--dot) 0 0 / var(--d) var(--d) round no-repeat,
+    var(--dot) 0 100% / var(--d) var(--d) round no-repeat,
+    var(--dot) 0 0 / var(--d) var(--d) no-repeat round,
+    var(--dot) 100% 0 / var(--d) var(--d) no-repeat round;
+}
+
+/* ---------- Heading ---------- */
+
+.headWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(2rem, 6vw, 3rem);
+  filter: drop-shadow(0 6px 10px rgba(42, 35, 80, 0.18));
+}
+
+.head {
+  --r: clamp(18px, 5vw, 26px);
+  padding: calc(var(--r) * 1.5) calc(var(--r) * 1.9) calc(var(--r) * 1.35);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--inv-display);
+  font-size: clamp(1.9rem, 8vw, 3rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  rotate: -2deg;
+}
+
+.sub {
+  margin: 0.6rem 0 0;
+  color: #57517a;
+  font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+  font-weight: 600;
+}
+
+/* ---------- Months ---------- */
+
+.grid {
+  --cols: 2;
+  --gap: clamp(0.85rem, 3.5vw, 1.75rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: calc(var(--gap) * 1.2) var(--gap);
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    --cols: 3;
+  }
+}
+
+@media (min-width: 960px) {
+  .grid {
+    --cols: 4;
+  }
+}
+
+/* Pinned up a little crooked, like photos on a fridge; straightened under the pointer. */
+.item {
+  width: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  filter: drop-shadow(0 6px 9px rgba(42, 35, 80, 0.2));
+  rotate: -1.8deg;
+  transition:
+    rotate 0.3s ease,
+    scale 0.3s ease;
+}
+
+.item:nth-child(even) {
+  rotate: 1.6deg;
+}
+
+.item:nth-child(3n) {
+  rotate: -0.8deg;
+}
+
+@media (hover: hover) {
+  .item:hover {
+    rotate: 0deg;
+    scale: 1.03;
+  }
+}
+
+.item .cloud {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--r) * 1.3) calc(var(--r) * 1.3) calc(var(--r) * 0.9);
+}
+
+.shot {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #f3ecd8;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.caption {
+  margin: 0.5rem 0 0;
+  color: #2a2350;
+  font-family: var(--inv-display);
+  font-size: clamp(1.05rem, 4.4vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.num {
+  font-size: 1.3em;
+}
+
+/* ---------- Twelfth month: the party ---------- */
+
+.soonShot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 10% 6%;
+  border: 2.5px dashed #f6b21a;
+  background: #fffaf0;
+}
+
+.cake {
+  display: block;
+  width: 116%;
+  margin-inline: -8%;
+  max-width: none;
+  height: auto;
+}
+
+.soonWord {
+  margin-top: 0.4rem;
+  font-family: var(--inv-display);
+  font-size: clamp(1.6rem, 7.5vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1;
+  rotate: -4deg;
+}
+
+.soonDate {
+  color: #57517a;
+  font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+  font-weight: 700;
+  line-height: 1.3;
+}

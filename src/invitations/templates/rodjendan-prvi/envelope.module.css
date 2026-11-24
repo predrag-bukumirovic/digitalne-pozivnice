@@ -57,6 +57,11 @@
   transition: opacity 0.5s ease;
 }
 
+/* With a drawing above the title, the panel reaches up to hold it. */
+.tall .panel {
+  top: calc(var(--W) * -0.54);
+}
+
 .panelShape {
   display: block;
   width: 100%;
@@ -77,6 +82,17 @@
   height: calc(var(--W) * 0.42);
   padding-bottom: calc(var(--W) * 0.1);
   transition: opacity 0.4s ease;
+}
+
+.topper {
+  position: absolute;
+  bottom: calc(100% + var(--W) * 0.01);
+  left: 50%;
+  width: calc(var(--W) * 0.88);
+  max-width: none;
+  height: auto;
+  translate: -50% 0;
+  pointer-events: none;
 }
 
 .invited {
@@ -256,6 +272,12 @@
   font-weight: 800;
   line-height: 1;
   text-shadow: 0 2px 0 rgba(42, 35, 80, 0.2);
+}
+
+/* A "1" is all flag on the left and stem on the right: centered by its box it looks pushed right,
+ * so it's nudged left until the stem sits in the middle. */
+.sealOne {
+  translate: -0.08em 0;
 }
 
 .seal::before {

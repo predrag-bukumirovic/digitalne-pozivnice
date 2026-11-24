@@ -119,3 +119,105 @@ export function Decorations({ className }: { className?: string }) {
     </>
   );
 }
+
+// Balloons floating beside the cake: [cx, cy, rx, ry, color].
+const BALLOONS: [number, number, number, number, string][] = [
+  [58, 44, 20, 24, "#2457c5"],
+  [92, 62, 14, 17, "#f6b21a"],
+  [244, 42, 20, 24, "#e03a3e"],
+  [209, 62, 14, 17, "#1f8f4e"],
+];
+
+// Confetti around the cake: strips [x, y, color, angle] and dots [x, y, color].
+const STRIPS: [number, number, string, number][] = [
+  [122, 30, "#e03a3e", 20],
+  [180, 22, "#1f8f4e", -30],
+  [112, 12, "#f6b21a", 60],
+  [190, 46, "#8b4fd8", -15],
+  [22, 98, "#f6b21a", 30],
+  [278, 92, "#2457c5", -40],
+  [268, 128, "#f2792b", 15],
+];
+const DOTS: [number, number, string][] = [
+  [168, 34, "#2457c5"],
+  [130, 46, "#1f8f4e"],
+  [18, 26, "#e03a3e"],
+  [284, 18, "#f6b21a"],
+  [34, 128, "#1f8f4e"],
+  [256, 104, "#e03a3e"],
+];
+const SPRINKLES: [number, number, string, number][] = [
+  [118, 87, "#e03a3e", 20],
+  [128, 83, "#2457c5", -30],
+  [134, 91, "#1f8f4e", 60],
+  [164, 83, "#f2792b", -10],
+  [170, 91, "#8b4fd8", 40],
+  [182, 86, "#f6b21a", -50],
+  [110, 90, "#f6b21a", -20],
+  [190, 90, "#e03a3e", 30],
+];
+
+/** A birthday cake with one candle, balloons and confetti, for the envelope's opening screen. */
+export function Cake({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 8 300 136" aria-hidden="true" focusable="false">
+      {BALLOONS.map(([cx, cy, rx, ry, color], i) => (
+        <g key={`b${i}`}>
+          <path
+            d={`M${cx} ${cy + ry + 4}q${i % 2 ? 5 : -5} 12 0 22t0 22`}
+            fill="none"
+            stroke="#c9bfa0"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+          />
+          <path d={`M${cx - 3} ${cy + ry + 4}L${cx} ${cy + ry - 1}L${cx + 3} ${cy + ry + 4}Z`} fill={color} />
+          <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill={color} />
+          <ellipse
+            cx={cx - rx * 0.38}
+            cy={cy - ry * 0.38}
+            rx={rx * 0.2}
+            ry={ry * 0.3}
+            fill="#fff"
+            opacity="0.45"
+            transform={`rotate(-20 ${cx - rx * 0.38} ${cy - ry * 0.38})`}
+          />
+        </g>
+      ))}
+
+      {STRIPS.map(([x, y, color, angle], i) => (
+        <rect key={`s${i}`} x={x - 4} y={y - 1.6} width="8" height="3.2" rx="1" fill={color} transform={`rotate(${angle} ${x} ${y})`} />
+      ))}
+      {DOTS.map(([x, y, color], i) => (
+        <circle key={`d${i}`} cx={x} cy={y} r="2.6" fill={color} />
+      ))}
+
+      {/* plate */}
+      <ellipse cx="150" cy="135" rx="72" ry="8" fill="#2457c5" />
+      <ellipse cx="150" cy="132" rx="68" ry="6" fill="#3f76e6" />
+
+      {/* sponge with a strawberry layer */}
+      <path d="M100 88V126Q150 140 200 126V88Z" fill="#f2c27b" />
+      <path d="M100 106Q150 120 200 106V113Q150 127 100 113Z" fill="#e03a3e" />
+      <path d="M100 119Q150 133 200 119V121Q150 135 100 121Z" fill="#e5ad62" />
+
+      {/* icing with drips */}
+      <path
+        d="M100 87C100 93 102 99 105 99C108 99 109 95 112 95C115 95 116 104 120 104C124 104 124 97 128 97C132 97 133 101 137 101C141 101 141 97 145 97C149 97 150 108 155 108C160 108 159 99 164 99C168 99 169 103 173 103C177 103 177 97 181 96C185 95 187 101 191 100C195 99 197 94 200 87Z"
+        fill="#fff8ee"
+      />
+      <ellipse cx="150" cy="88" rx="50" ry="9" fill="#fff8ee" />
+      <ellipse cx="150" cy="88" rx="50" ry="9" fill="none" stroke="#efe2c9" strokeWidth="1" />
+      {SPRINKLES.map(([x, y, color, angle], i) => (
+        <rect key={`p${i}`} x={x - 3} y={y - 1} width="6" height="2" rx="1" fill={color} transform={`rotate(${angle} ${x} ${y})`} />
+      ))}
+
+      {/* candle */}
+      <circle cx="150" cy="38" r="15" fill="#f6c026" opacity="0.2" />
+      <rect x="145" y="50" width="10" height="38" rx="2" fill="#2457c5" />
+      <path d="M145 59l10-5M145 69l10-5M145 79l10-5" stroke="#fff" strokeWidth="2.4" opacity="0.9" />
+      <path d="M150 50V44" stroke="#2a2350" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M150 25C155 32 157 36 157 39.5C157 43.5 154 45.5 150 45.5C146 45.5 143 43.5 143 39.5C143 36 145 32 150 25Z" fill="#f6b21a" />
+      <path d="M150 33C153 37 154 39 154 40.5C154 42.5 152.3 43.6 150 43.6C147.7 43.6 146 42.5 146 40.5C146 39 147 37 150 33Z" fill="#f2792b" />
+    </svg>
+  );
+}

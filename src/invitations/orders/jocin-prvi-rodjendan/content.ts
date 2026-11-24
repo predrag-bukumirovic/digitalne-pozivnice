@@ -1,7 +1,7 @@
 import type { InvitationContent } from "@/invitations/types";
 
 const place = "Restoran Džo";
-const address = "Batajnica";
+const address = "Aerodromska 68A, Batajnica";
 
 const content: InvitationContent = {
   slug: "jocin-prvi-rodjendan-74drq",
@@ -11,8 +11,7 @@ const content: InvitationContent = {
   names: "Jovan",
   subtitle: "Jocin prvi rođendan",
   date: "2027-01-10T17:00:00+01:00",
-  intro:
-    "Tijana i Marko vas pozivaju da zajedno proslavimo prvi rođendan našeg Jovana!",
+  intro: "Pozivamo vas da zajedno proslavimo prvi rođendan našeg Jovana!",
   eventsTitle: "Gde i kada",
   events: [
     {
@@ -38,6 +37,9 @@ const content: InvitationContent = {
   ],
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do Jocinog prvog rođendana je ostalo još",
+  closing:
+    "Jedva čekamo da zajedno stvaramo nove uspomene! Vidimo se na Jocinom prvom rođendanu! 🎂💛",
+  signature: "Joca sa mamom i tatom",
 };
 
 export default content;

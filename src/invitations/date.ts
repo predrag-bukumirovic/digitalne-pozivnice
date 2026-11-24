@@ -53,6 +53,12 @@ export function longDate(iso: string) {
   return `${weekday}, ${day}. ${MONTHS_GENITIVE[month - 1]} ${year}.`;
 }
 
+/** "10. januara" */
+export function dayMonth(iso: string) {
+  const { month, day } = dateParts(iso);
+  return `${day}. ${MONTHS_GENITIVE[month - 1]}`;
+}
+
 /** "12.06.2027" */
 export function numericDate(iso: string) {
   const { year, month, day } = dateParts(iso);

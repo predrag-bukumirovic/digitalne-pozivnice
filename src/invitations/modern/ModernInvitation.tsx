@@ -27,6 +27,7 @@ export default function ModernInvitation({
   music,
   closingArt,
   intro,
+  extra,
 }: {
   content: InvitationContent;
   className: string;
@@ -38,6 +39,8 @@ export default function ModernInvitation({
   closingArt?: ReactNode;
   /** Shown over the page before the invitation itself, e.g. an envelope to open. */
   intro?: ReactNode;
+  /** A template's own section (e.g. a photo per month), after the RSVP and before the closing. */
+  extra?: ReactNode;
 }) {
   const orderHref = `/kontakt?sablon=${content.slug}`;
   const category = categoryByLabel(content.category);
@@ -45,7 +48,7 @@ export default function ModernInvitation({
 
   return (
     <div className={`${styles.page} ${music ? styles.withMusic : ""} ${className}`}>
-      <SmoothScroll />
+      <SmoothScroll fromTop />
       {intro}
       {demo && category && (
         <JsonLd
@@ -107,6 +110,8 @@ export default function ModernInvitation({
             {content.rsvpContacts.length > 0 && <Contacts contacts={content.rsvpContacts} demo={demo} />}
           </div>
         </section>
+
+        {extra}
 
         {content.closing && (
           <section className={`${styles.section} ${styles.alt} ${styles.closing}`}>

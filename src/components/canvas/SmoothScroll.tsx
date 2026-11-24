@@ -8,8 +8,9 @@ import { useEffect, useRef } from "react";
 /**
  * Eased wheel and touchpad scrolling on the marketing pages and every invitation. Native scrolling
  * stays underneath, so sticky sections keep working.
+ * `fromTop` (invitations): the page always opens at its beginning, never where it was left.
  */
-export default function SmoothScroll() {
+export default function SmoothScroll({ fromTop = false }: { fromTop?: boolean }) {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
   const backRef = useRef(false);
@@ -50,6 +51,29 @@ export default function SmoothScroll() {
       lenisRef.current = null;
     };
   }, []);
+
+  // An invitation starts from its beginning also on reload, on reopening the link and on coming
+  // back to it, where the browser would otherwise put back the old position. Only while it is open.
+  useEffect(() => {
+    if (!fromTop) return;
+    const before = history.scrollRestoration;
+    history.scrollRestoration = "manual";
+    const toTop = () => {
+      if (window.location.hash) return;
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      lenisRef.current?.scrollTo(0, { immediate: true, force: true });
+    };
+    toTop();
+    // A page brought back from the back/forward cache isn't mounted again.
+    const onShow = (event: PageTransitionEvent) => {
+      if (event.persisted) toTop();
+    };
+    window.addEventListener("pageshow", onShow);
+    return () => {
+      window.removeEventListener("pageshow", onShow);
+      history.scrollRestoration = before;
+    };
+  }, [fromTop]);
 
   // A new page always opens at the very top. Without this, a glide still running from the
   // previous page (a flick of the wheel or touchpad just before the click) carries on and
