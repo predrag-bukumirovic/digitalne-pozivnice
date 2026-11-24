@@ -5,7 +5,10 @@ import "lenis/dist/lenis.css";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-/** Eased wheel and touchpad scrolling on the marketing pages. Native scrolling stays underneath, so sticky sections keep working. */
+/**
+ * Eased wheel and touchpad scrolling on the marketing pages and every invitation. Native scrolling
+ * stays underneath, so sticky sections keep working.
+ */
 export default function SmoothScroll() {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
@@ -25,7 +28,15 @@ export default function SmoothScroll() {
 
     // allowNestedScroll: a sideways swipe over a horizontal slider scrolls the slider natively,
     // while ordinary up/down wheeling over it still goes through the smooth page scroll.
-    const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, allowNestedScroll: true });
+    // While the menu or an invitation's envelope locks the page (overflow: hidden on <html>),
+    // Lenis leaves the wheel alone, so the page behind can't move.
+    const root = document.documentElement;
+    const lenis = new Lenis({
+      lerp: 0.085,
+      smoothWheel: true,
+      allowNestedScroll: true,
+      virtualScroll: () => root.style.overflow !== "hidden",
+    });
     lenisRef.current = lenis;
     let frame = requestAnimationFrame(function loop(time) {
       lenis.raf(time);

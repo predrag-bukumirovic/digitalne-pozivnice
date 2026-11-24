@@ -21,6 +21,8 @@ const content: InvitationContent = {
   ],
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do krštenja je ostalo još",
+  closing: "Hvala vam što ćete sa nama podeliti radost ovog blagoslovenog dana.",
+  signature: "Tamara i Vladimir",
 };
 
 export default content;

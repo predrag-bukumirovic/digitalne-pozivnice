@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import SmoothScroll from "@/components/canvas/SmoothScroll";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd } from "@/lib/seo";
 import { googleCalendarUrl } from "../calendar";
@@ -44,6 +45,7 @@ export default function ModernInvitation({
 
   return (
     <div className={`${styles.page} ${music ? styles.withMusic : ""} ${className}`}>
+      <SmoothScroll />
       {intro}
       {demo && category && (
         <JsonLd
@@ -102,7 +104,7 @@ export default function ModernInvitation({
           <div className={styles.container}>
             <h2 className={styles.heading}>Potvrda dolaska</h2>
             <p className={styles.note}>{content.rsvpNote}</p>
-            {content.rsvpContacts.length > 0 && <Contacts contacts={content.rsvpContacts} />}
+            {content.rsvpContacts.length > 0 && <Contacts contacts={content.rsvpContacts} demo={demo} />}
           </div>
         </section>
 

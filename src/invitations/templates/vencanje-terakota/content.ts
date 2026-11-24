@@ -14,6 +14,7 @@ const content: InvitationContent = {
     { icon: "", title: "Venčanje u vrtu", time: "18:00h", place: "Imanje Hrast", address: "Fruška gora" },
     { icon: "", title: "Večera i igranka", time: "20:00h", place: "Imanje Hrast", address: "Fruška gora" },
   ],
+  notes: ["Venčanje je na otvorenom, preporučujemo udobnu obuću", "Parking je obezbeđen na imanju"],
   rsvpNote: "Molimo vas da dolazak potvrdite do 1. avgusta 2027. pozivom ili porukom:",
   rsvpContacts: [
     { name: "Jelena", phone: "064 101 2020" },
@@ -21,6 +22,8 @@ const content: InvitationContent = {
   ],
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do našeg venčanja je ostalo još",
+  closing: "Ponesite dobro raspoloženje, za ostalo smo se pobrinuli mi. Vidimo se među vinogradima!",
+  signature: "Jelena & Stefan",
 };
 
 export default content;

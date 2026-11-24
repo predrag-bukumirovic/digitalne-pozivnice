@@ -1,0 +1,266 @@
+.theme {
+  --inv-bg: #560d17;
+  --inv-alt: #440911;
+  --inv-text: #f6ead6;
+  --inv-muted: #dcc3ad;
+  --inv-accent: #e6cb92;
+  --inv-on-accent: #440911;
+  --inv-line: rgba(230, 203, 146, 0.3);
+  --inv-display: var(--nf-serif), Georgia, serif;
+  --inv-display-weight: 500;
+  --inv-display-case: uppercase;
+  --inv-display-tracking: 0.03em;
+  --inv-intro-font: var(--nf-serif), Georgia, serif;
+  --inv-intro-weight: 500;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
+  --inv-radius: 6px;
+  --inv-marker-radius: 50%;
+  --inv-countdown-bg: #f4e9d6;
+  --inv-countdown-text: #560d17;
+  --gold: #ebd29b;
+  --cream: #f4e9d6;
+  --script: var(--font-somot-script), cursive;
+}
+
+/* Section headings: a flourished first letter, spaced capitals after it. */
+.theme h2 {
+  font-size: clamp(1.75rem, 6.4vw, 2.6rem);
+  letter-spacing: 0.1em;
+}
+
+.theme h2::first-letter {
+  margin-right: 0.03em;
+  color: var(--gold);
+  font-family: var(--script);
+  font-size: 1.9em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.6;
+}
+
+.bow {
+  display: block;
+  width: 104px;
+  height: auto;
+  margin: 0 auto 1.75rem;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  --f: clamp(58px, 12cqi, 150px);
+  position: relative;
+  container-type: inline-size;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: min(100svh, 920px);
+  padding: max(4.5rem, 9cqi) 5cqi clamp(6.5rem, 22cqi, 9.5rem);
+  overflow: hidden;
+  color: var(--inv-text);
+  text-align: center;
+  /* Velvet: a warm spotlight, darker top and bottom, and folds of two different widths. */
+  background:
+    radial-gradient(ellipse 62% 44% at 50% 47%, rgba(255, 190, 150, 0.24), rgba(255, 190, 150, 0) 72%),
+    linear-gradient(180deg, rgba(20, 0, 5, 0.66), rgba(20, 0, 5, 0) 26%, rgba(20, 0, 5, 0) 60%, rgba(20, 0, 5, 0.6)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.24) 0,
+      rgba(0, 0, 0, 0) calc(var(--f) * 0.45),
+      rgba(255, 150, 160, 0.08) calc(var(--f) * 0.8),
+      rgba(0, 0, 0, 0) calc(var(--f) * 1.1),
+      rgba(0, 0, 0, 0.24) calc(var(--f) * 1.62)
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #3a0610 0,
+      #5f0f1c calc(var(--f) * 0.24),
+      #921f2f calc(var(--f) * 0.42),
+      #b02f3e calc(var(--f) * 0.5),
+      #821a2a calc(var(--f) * 0.62),
+      #4b0914 calc(var(--f) * 0.86),
+      #3a0610 var(--f)
+    );
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+  padding: 7cqi 4cqi 20cqi;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+.content {
+  --w: min(94cqi, 540px);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--w);
+}
+
+.compact .content {
+  --w: 92cqi;
+}
+
+.host {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  color: var(--gold);
+  font-family: var(--inv-display);
+  font-size: max(calc(var(--w) * 0.032), 7px);
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.host::before,
+.host::after {
+  content: "";
+  width: calc(var(--w) * 0.1);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: calc(var(--w) * 0.05);
+  line-height: 1;
+}
+
+.titleScript {
+  color: var(--gold);
+  font-family: var(--script);
+  font-size: calc(var(--w) * 0.205);
+  font-weight: 400;
+  line-height: 0.95;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+.titleCaps {
+  margin-top: calc(var(--w) * -0.005);
+  padding-left: 0.26em;
+  color: var(--inv-text);
+  font-family: var(--inv-display);
+  font-size: calc(var(--w) * 0.084);
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.glasses {
+  width: calc(var(--w) * 0.88);
+  height: auto;
+  margin-top: calc(var(--w) * 0.05);
+  overflow: visible;
+  filter: drop-shadow(0 14px 20px rgba(20, 0, 5, 0.45));
+}
+
+.date {
+  margin-top: calc(var(--w) * 0.05);
+  color: var(--inv-text);
+  font-family: var(--inv-display);
+  font-size: calc(var(--w) * 0.058);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.place {
+  margin-top: calc(var(--w) * 0.018);
+  color: var(--inv-muted);
+  font-family: var(--inv-display);
+  font-size: max(calc(var(--w) * 0.032), 7px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  font-variant-numeric: lining-nums;
+}
+
+/* The garland sits on the seam between the velvet and the cream countdown band below it. */
+.garland {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  height: clamp(100px, 24cqi, 132px);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 52%, var(--cream) 52%);
+  pointer-events: none;
+}
+
+.tile {
+  flex: none;
+  width: auto;
+  height: 100%;
+  aspect-ratio: 400 / 120;
+}
+
+/* ---------- Motion ---------- */
+
+.bubble {
+  animation: rise 2.8s ease-in infinite;
+}
+
+.twinkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.55);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble,
+  .twinkle {
+    animation: none;
+  }
+}

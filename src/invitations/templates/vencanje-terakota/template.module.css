@@ -7,11 +7,29 @@
   --inv-on-accent: #fff;
   --inv-line: rgba(43, 29, 22, 0.16);
   --inv-display: var(--font-terakota), Georgia, serif;
-  --inv-align: left;
-  --inv-mi: 0 auto;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
   --inv-radius: 6px;
   --inv-countdown-bg: #a94d28;
   --inv-countdown-text: #f7efe6;
+}
+
+/* Section headings: a line of hills with a small sun. */
+.theme h2::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 16px;
+  margin: 0.5em auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 16'%3E%3Cpath d='M2 13C12 4 22 3 33 9S56 15 66 7 82 4 88 8' fill='none' stroke='%23a94d28' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='74' cy='4' r='2.6' fill='%23a94d28'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.closingArt {
+  display: block;
+  width: 130px;
+  height: auto;
+  margin: 0 auto 1.25rem;
 }
 
 /* ---------- Hero ---------- */
@@ -23,6 +41,8 @@
   flex-direction: column;
   min-height: min(100svh, 900px);
   overflow: hidden;
+  background: var(--inv-bg);
+  color: var(--inv-text);
 }
 
 .compact {
@@ -48,15 +68,11 @@
   letter-spacing: inherit;
 }
 
-.hero {
-  background: var(--inv-bg);
-  color: var(--inv-text);
-}
-
 .split {
+  --hills: clamp(120px, 36cqi, 230px);
   flex: 1;
   display: grid;
-  grid-template-rows: 1.5fr 1fr;
+  grid-template-rows: 1.6fr 1fr;
 }
 
 @container (min-width: 760px) {
@@ -66,18 +82,36 @@
   }
 }
 
+/* Terracotta sky; the names sit above the vineyard hills along its bottom edge. */
 .block {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 2cqi;
-  padding: max(5rem, 9cqi) 7cqi 7cqi;
+  padding: max(5rem, 9cqi) 7cqi calc(var(--hills) * 0.9);
   background: #a94d28;
   color: #f7efe6;
 }
 
 .compact .block {
-  padding: 8cqi 7cqi 6cqi;
+  padding: 8cqi 7cqi calc(var(--hills) * 0.9);
+}
+
+.blockText {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2cqi;
+}
+
+.landscape {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--hills);
 }
 
 .kicker {
@@ -101,11 +135,34 @@
 }
 
 .side {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1cqi;
-  padding: 7cqi;
+  padding: 4cqi 7cqi 7cqi;
+}
+
+@container (min-width: 760px) {
+  .side {
+    padding: 7cqi 5cqi;
+  }
+}
+
+.grapes {
+  position: absolute;
+  top: 2cqi;
+  right: 7cqi;
+  width: clamp(64px, 20cqi, 130px);
+  height: auto;
+}
+
+@container (min-width: 760px) {
+  .grapes {
+    top: max(6rem, 14cqi);
+    right: 5cqi;
+    width: clamp(64px, 9cqi, 130px);
+  }
 }
 
 .bigDate {
@@ -122,8 +179,25 @@
   letter-spacing: 0.25em;
 }
 
+.when {
+  margin-top: 2.5cqi;
+  padding-top: 2.5cqi;
+  border-top: 1px solid var(--inv-line);
+  font-family: var(--inv-display);
+  font-size: clamp(0.8rem, 5cqi, 1.6rem);
+  font-style: italic;
+  line-height: 1.2;
+}
+
+@container (min-width: 760px) {
+  .when {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    font-size: clamp(1.2rem, 2.2cqi, 1.6rem);
+  }
+}
+
 .place {
-  margin-top: 2cqi;
   font-size: clamp(0.5rem, 2.9cqi, 1rem);
   color: var(--inv-muted);
 }

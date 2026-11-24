@@ -22,6 +22,8 @@ const content: InvitationContent = {
   ],
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do našeg venčanja je ostalo još",
+  closing: "Vaše prisustvo je najlepši poklon. Radujemo se što ćemo ovaj dan podeliti sa vama.",
+  signature: "Ana & Jovan",
 };
 
 export default content;

@@ -1,0 +1,318 @@
+.theme {
+  --navy: #1e2f66;
+  --paper: #fbfaf5;
+  --ink: #1e2f66;
+  --mono: var(--font-let-mono), "Courier New", monospace;
+  --inv-bg: var(--navy);
+  --inv-alt: #182756;
+  --inv-text: #f7f5ef;
+  --inv-muted: #c3c9de;
+  --inv-accent: #f7f5ef;
+  --inv-on-accent: var(--navy);
+  --inv-line: rgba(247, 245, 239, 0.22);
+  --inv-display: var(--nf-serif), Georgia, serif;
+  --inv-display-weight: 500;
+  --inv-display-case: uppercase;
+  --inv-display-tracking: 0.03em;
+  --inv-intro-font: var(--nf-serif), Georgia, serif;
+  --inv-intro-weight: 500;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
+  --inv-radius: 6px;
+  --inv-marker-radius: 50%;
+  --inv-countdown-bg: var(--paper);
+  --inv-countdown-text: var(--navy);
+}
+
+/* Section headings: spaced capitals with a dashed flight route underneath. */
+.theme h2 {
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  letter-spacing: 0.1em;
+}
+
+.theme h2::after {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 22px;
+  margin: 0.55em auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 22'%3E%3Cpath d='M3 17C36 6 84 4 124 12' fill='none' stroke='%23f7f5ef' stroke-width='1.4' stroke-dasharray='4 5' opacity='.7'/%3E%3Cpath transform='translate(138 12) rotate(84) scale(.8)' fill='%23f7f5ef' d='M0-10C1-10 1.6-8.6 1.6-7.2V-3.4L10 1.6V3.6L1.6 1.2V6.4L4.2 8.4V10L0 9 -4.2 10V8.4L-1.6 6.4V1.2L-10 3.6V1.6L-1.6-3.4V-7.2C-1.6-8.6-1-10 0-10Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+/* The countdown is a white band with a ticket's scalloped edges. */
+.theme main > section:first-of-type {
+  position: relative;
+}
+
+.theme main > section:first-of-type::before,
+.theme main > section:first-of-type::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 14px;
+  background: radial-gradient(circle at 50% 50%, var(--navy) 6.5px, rgba(30, 47, 102, 0) 7px) 50% 0 / 18px 14px repeat-x;
+  pointer-events: none;
+}
+
+.theme main > section:first-of-type::before {
+  top: -7px;
+}
+
+.theme main > section:first-of-type::after {
+  bottom: -7px;
+}
+
+.closingPlane {
+  display: block;
+  width: 150px;
+  height: auto;
+  margin: 0 auto 1.25rem;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: min(100svh, 1000px);
+  padding: max(4.75rem, 8cqi) 5cqi max(4rem, 7cqi);
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.compact {
+  min-height: 0;
+  height: 100%;
+  padding: 5cqi 4cqi;
+}
+
+/* Homepage card: the same hero, scaled by container units. */
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  container-type: inline-size;
+}
+
+.preview > header {
+  flex: 1;
+}
+
+.route {
+  position: absolute;
+  width: clamp(120px, 24cqi, 250px);
+  height: auto;
+  pointer-events: none;
+}
+
+.routeTop {
+  top: 8%;
+  right: 2%;
+}
+
+.routeBottom {
+  bottom: 6%;
+  left: 2%;
+}
+
+/* ---------- Ticket ---------- */
+
+.ticket {
+  /* Narrow enough for phones, short enough that the whole ticket fits a laptop screen. */
+  --t: min(86cqi, 430px, calc((100svh - 9rem) / 1.62));
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--t);
+  padding: calc(var(--t) * 0.06) calc(var(--t) * 0.07) calc(var(--t) * 0.07);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--mono);
+  text-align: center;
+}
+
+.compact .ticket {
+  --t: 76cqi;
+}
+
+/* Scalloped top and bottom edges: navy half-circles bitten out of the paper. */
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 12px;
+  background: radial-gradient(circle at 50% 50%, var(--navy) 5.5px, rgba(30, 47, 102, 0) 6px) 50% 0 / 16px 12px repeat-x;
+}
+
+.ticket::before {
+  top: -6px;
+}
+
+.ticket::after {
+  bottom: -6px;
+}
+
+.ticketHead {
+  color: var(--ink);
+  font-size: calc(var(--t) * 0.036);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* A dashed tear line with a round notch on either edge. */
+.perf {
+  position: relative;
+  align-self: stretch;
+  height: 0;
+  margin: calc(var(--t) * 0.045) calc(var(--t) * -0.07);
+  border-top: 2px dashed rgba(30, 47, 102, 0.45);
+}
+
+.perf::before,
+.perf::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--t) * -0.03 - 1px);
+  width: calc(var(--t) * 0.06);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--navy);
+}
+
+.perf::before {
+  left: calc(var(--t) * -0.03);
+}
+
+.perf::after {
+  right: calc(var(--t) * -0.03);
+}
+
+.globe {
+  width: calc(var(--t) * 0.64);
+  height: auto;
+}
+
+.names {
+  margin-top: calc(var(--t) * 0.02);
+  color: var(--ink);
+  font-family: var(--nf-serif), Georgia, serif;
+  font-size: calc(var(--t) * 0.088);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.info {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: 100%;
+  margin-top: calc(var(--t) * 0.05);
+  border: 1.5px solid var(--ink);
+  /* Set here, not on the sideways tab: inside vertical text, container units measure the screen's height. */
+  font-size: calc(var(--t) * 0.025);
+  text-align: left;
+}
+
+.tab {
+  padding: 0.7em 0.4em;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: inherit;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.fields > div {
+  padding: calc(var(--t) * 0.022) calc(var(--t) * 0.03);
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.fields > div:nth-child(2) {
+  border-left: 1.5px solid var(--ink);
+}
+
+.fields > .wide {
+  grid-column: 1 / -1;
+  padding-right: calc(var(--t) * 0.17);
+  border-bottom: 0;
+}
+
+.fields dt {
+  font-size: calc(var(--t) * 0.025);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fields dd {
+  margin: 0.35em 0 0;
+  font-size: calc(var(--t) * 0.034);
+  line-height: 1.25;
+}
+
+.stamp {
+  position: absolute;
+  right: calc(var(--t) * -0.045);
+  bottom: calc(var(--t) * -0.045);
+  width: calc(var(--t) * 0.21);
+  height: auto;
+  opacity: 0.9;
+  transform: rotate(-14deg);
+}
+
+.stub {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  text-align: left;
+}
+
+.stub p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  color: var(--ink);
+}
+
+.stub span {
+  font-size: calc(var(--t) * 0.025);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stub b {
+  font-size: calc(var(--t) * 0.05);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.barcode {
+  width: 100%;
+  height: calc(var(--t) * 0.1);
+  margin-top: calc(var(--t) * 0.04);
+}

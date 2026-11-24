@@ -14,6 +14,7 @@ const content: InvitationContent = {
     { icon: "", title: "Crkveno venčanje", time: "15:00h", place: "Saborna crkva", address: "Stari grad, Beograd" },
     { icon: "", title: "Svečana večera", time: "19:00h", place: "Vila Jorgovan", address: "Senjak, Beograd" },
   ],
+  notes: ["Dress code: svečano"],
   rsvpNote: "Molimo vas da dolazak potvrdite do 15. avgusta 2027. pozivom ili porukom:",
   rsvpContacts: [
     { name: "Milica", phone: "064 222 3344" },
@@ -21,6 +22,8 @@ const content: InvitationContent = {
   ],
   countdownTitle: "Odbrojavamo!",
   countdownText: "Do venčanja je ostalo još",
+  closing: "Hvala što ste deo naše priče. Vidimo se na venčanju!",
+  signature: "Milica & Nikola",
 };
 
 export default content;

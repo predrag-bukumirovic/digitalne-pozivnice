@@ -1,20 +1,32 @@
-import { numericDate, timeOf } from "@/invitations/date";
-import content from "./content";
+import { longDate, numericDate, timeOf } from "@/invitations/date";
+import type { InvitationContent } from "@/invitations/types";
+import { Branch, Cross } from "./art";
+import demoContent from "./content";
 import styles from "./template.module.css";
 
-export default function Hero({ compact = false }: { compact?: boolean }) {
+export default function Hero({ content = demoContent, compact = false }: { content?: InvitationContent; compact?: boolean }) {
   const Title = compact ? "p" : "h1";
+  const venue = content.events[0];
 
   return (
     <header className={`${styles.hero} ${compact ? styles.compact : ""}`}>
       <span className={styles.disc} aria-hidden="true" />
-      <p className={styles.vertical}>{content.subtitle}</p>
+      <Branch className={styles.branch} />
       <p className={styles.date}>{numericDate(content.date)}</p>
       <div className={styles.bottom}>
+        <Cross className={styles.cross} />
+        <p className={styles.kicker}>{content.subtitle}</p>
         <Title className={styles.name}>{content.names}</Title>
-        <p className={styles.place}>
-          {content.events[0].place} · {timeOf(content.date)}h
-        </p>
+        <div className={styles.facts}>
+          <p>
+            {longDate(content.date)} u {timeOf(content.date)}
+          </p>
+          {venue && (
+            <p>
+              {venue.place}, {venue.address}
+            </p>
+          )}
+        </div>
       </div>
     </header>
   );

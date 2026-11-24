@@ -149,12 +149,15 @@
   font-weight: 600;
 }
 
+/* As wide as the calendar and lined up with it, also in left-aligned themes. */
 .calendarActions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
+  width: min(100%, 400px);
   margin-top: 1.5rem;
+  margin-inline: var(--inv-mi, 0 auto);
 }
 
 .calendarButton {
@@ -472,6 +475,17 @@
   color: var(--inv-accent, inherit);
 }
 
+/* A sample's hidden digits: the font's contextual forms would draw a star next to a digit differently
+ * from one next to another star, so they're switched off and every star looks the same. */
+.contactMasked {
+  font-feature-settings: "calt" 0;
+  font-variant-ligatures: none;
+}
+
+.contactMasked:hover {
+  color: inherit;
+}
+
 .contactSms {
   color: var(--inv-muted, #6b655c);
   font-size: 0.9rem;
@@ -535,7 +549,9 @@
 
 /* ---------- Closing ---------- */
 
-.closing {
+/* The closing is always centered, also in left-aligned themes. */
+.closing,
+.closing .container {
   text-align: center;
 }
 

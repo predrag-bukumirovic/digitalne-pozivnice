@@ -8,11 +8,29 @@
   --inv-line: rgba(38, 42, 29, 0.16);
   --inv-display: var(--font-maslina), Georgia, serif;
   --inv-display-tracking: -0.02em;
-  --inv-align: left;
-  --inv-mi: 0 auto;
+  --inv-align: center;
+  --inv-mi: auto;
+  --inv-contact-align: center;
   --inv-radius: 16px;
   --inv-countdown-bg: #4f6132;
   --inv-countdown-text: #f3f1e7;
+}
+
+/* Section headings: a small olive sprig underneath. */
+.theme h2::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 28px;
+  margin: 0.4em auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 28'%3E%3Cpath d='M4 13H86' stroke='%234f6132' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath transform='translate(14 13) rotate(-40)' d='M0 0C3-2.4 11-3 17 0C11 3 3 2.4 0 0Z' fill='%234f6132'/%3E%3Cpath transform='translate(28 13) rotate(36)' d='M0 0C3-2.4 11-3 17 0C11 3 3 2.4 0 0Z' fill='%236b7d4a'/%3E%3Cpath transform='translate(42 13) rotate(-36)' d='M0 0C3-2.4 11-3 17 0C11 3 3 2.4 0 0Z' fill='%2393a07a'/%3E%3Cpath transform='translate(56 13) rotate(34)' d='M0 0C3-2.4 11-3 17 0C11 3 3 2.4 0 0Z' fill='%234f6132'/%3E%3Cpath transform='translate(70 13) rotate(-30)' d='M0 0C3-2.4 11-3 17 0C11 3 3 2.4 0 0Z' fill='%236b7d4a'/%3E%3Cpath transform='translate(86 13) rotate(0)' d='M0 0C3-2.4 11-3 17 0C11 3 3 2.4 0 0Z' fill='%234f6132'/%3E%3Cpath d='M48 13V18' stroke='%234f6132' stroke-width='1'/%3E%3Cellipse cx='48' cy='22.5' rx='3.4' ry='4.6' fill='%233d4b25'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.closingArt {
+  display: block;
+  width: 190px;
+  height: auto;
+  margin: 0 auto 1rem;
 }
 
 /* ---------- Hero ---------- */
@@ -20,15 +38,23 @@
 .hero {
   position: relative;
   container-type: inline-size;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   min-height: min(100svh, 900px);
+  padding: max(5rem, 9cqi) 7cqi max(6rem, 7cqi);
   overflow: hidden;
+  background: var(--inv-bg);
+  color: var(--inv-text);
+  text-align: center;
 }
 
 .compact {
   min-height: 0;
   height: 100%;
+  padding: 8cqi 7cqi;
 }
 
 /* Homepage card: the same hero, scaled by container units. */
@@ -49,43 +75,42 @@
   letter-spacing: inherit;
 }
 
-.hero {
-  justify-content: space-between;
-  padding: max(5rem, 9cqi) 7cqi 7cqi;
-  background: var(--inv-bg);
-  color: var(--inv-text);
-}
-
-.compact {
-  padding: 8cqi 7cqi;
-}
-
 .disc {
   position: absolute;
+  z-index: -1;
   top: -18cqi;
   right: -22cqi;
-  width: min(84cqi, 660px);
+  width: min(96cqi, 700px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: #dfe4cc;
 }
 
-.vertical {
+/* The branch sweeps out of the top right corner, across the disc. */
+.branch {
   position: absolute;
-  left: 3cqi;
-  bottom: 9cqi;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: clamp(0.45rem, 2.4cqi, 0.8rem);
-  font-weight: 600;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--inv-accent);
+  z-index: -1;
+  top: max(3.5rem, 5cqi);
+  right: -6cqi;
+  width: min(112cqi, 560px);
+  max-width: none;
+  height: auto;
+}
+
+/* On phones the branch is larger, so it fills more of the tall screen. */
+@container (max-width: 599px) {
+  .branch {
+    top: max(4.5rem, 4cqi);
+    right: -20cqi;
+    width: 136cqi;
+  }
+}
+
+.compact .branch {
+  top: 4cqi;
 }
 
 .date {
-  position: relative;
-  align-self: flex-end;
   font-size: clamp(0.55rem, 3cqi, 1rem);
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -93,19 +118,46 @@
 
 .bottom {
   position: relative;
-  padding-left: 4cqi;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cross {
+  width: clamp(0.8rem, 4.5cqi, 1.5rem);
+  height: auto;
+  margin-bottom: clamp(0.5rem, 2.5cqi, 1rem);
+}
+
+.kicker {
+  margin-bottom: clamp(0.4rem, 2cqi, 0.9rem);
+  font-size: clamp(0.5rem, 2.6cqi, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--inv-accent);
 }
 
 .name {
   font-family: var(--inv-display);
-  font-size: clamp(3rem, 27cqi, 13rem);
+  font-size: clamp(3rem, 27cqi, 12rem);
   line-height: 0.9;
   letter-spacing: -0.03em;
   color: var(--inv-accent);
 }
 
-.place {
-  margin-top: 2cqi;
-  font-size: clamp(0.55rem, 3cqi, 1.05rem);
+/* Date and place under a short rule. */
+.facts {
+  display: grid;
+  gap: clamp(0.2rem, 1.2cqi, 0.45rem);
+  margin-top: clamp(0.75rem, 4cqi, 1.75rem);
+  padding-top: clamp(0.6rem, 3cqi, 1.25rem);
+  border-top: 1px solid var(--inv-line);
+  font-size: clamp(0.55rem, 3.3cqi, 1.05rem);
   font-weight: 500;
+  line-height: 1.35;
+}
+
+.facts p + p {
+  color: var(--inv-muted);
 }

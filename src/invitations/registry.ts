@@ -4,6 +4,7 @@ import type { InvitationContent } from "./types";
 import VencanjePreview from "./templates/vencanje/Preview";
 import VencanjeMonogramPreview from "./templates/vencanje-monogram/Preview";
 import VencanjeTerakotaPreview from "./templates/vencanje-terakota/Preview";
+import VencanjeLetPreview from "./templates/vencanje-let/Preview";
 import KrstenjePreview from "./templates/krstenje/Preview";
 import KrstenjeMaslinaPreview from "./templates/krstenje-maslina/Preview";
 import RodjendanPreview from "./templates/rodjendan/Preview";
@@ -15,11 +16,14 @@ import ProslavaBebePreview from "./templates/proslava-bebe/Preview";
 import ProslavaBebeMesecPreview from "./templates/proslava-bebe-mesec/Preview";
 import PoslovnoPreview from "./templates/poslovno/Preview";
 import PoslovnoKonferencijaPreview from "./templates/poslovno-konferencija/Preview";
+import PoslovnoNovogodisnjiPreview from "./templates/poslovno-novogodisnji/Preview";
+import PoslovnoGalaPreview from "./templates/poslovno-gala/Preview";
 
 const previews: Record<string, ComponentType> = {
   "vencanje": VencanjePreview,
   "vencanje-monogram": VencanjeMonogramPreview,
   "vencanje-terakota": VencanjeTerakotaPreview,
+  "vencanje-let": VencanjeLetPreview,
   "krstenje": KrstenjePreview,
   "krstenje-maslina": KrstenjeMaslinaPreview,
   "rodjendan": RodjendanPreview,
@@ -31,6 +35,8 @@ const previews: Record<string, ComponentType> = {
   "proslava-bebe-mesec": ProslavaBebeMesecPreview,
   "poslovno": PoslovnoPreview,
   "poslovno-konferencija": PoslovnoKonferencijaPreview,
+  "poslovno-novogodisnji": PoslovnoNovogodisnjiPreview,
+  "poslovno-gala": PoslovnoGalaPreview,
 };
 
 export const invitations: { content: InvitationContent; Preview: ComponentType }[] = catalog.map((content) => ({
